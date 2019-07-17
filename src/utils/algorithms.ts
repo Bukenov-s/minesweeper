@@ -2,12 +2,10 @@
 // 2. generate random indexes to assign bombs to cells
 // 3. count bombs
 
-// randomly picks 9 items from allPossibleIndexes array of strings
-
-
 // generates objects of objects
 // with indexes as keys and objects as values
 export const createTable = () => {
+  // generate initial empty table
   const mines = {}
   for (let i = 0; i < 9; i++) {
     mines[i] = {}
@@ -26,7 +24,7 @@ export const createTable = () => {
     }
   }
 
-
+  // generate random indexes to assign bombs later on
   const pickRandomUniqueIndexes = () => {
     // generates an array of all possible indexes of cells 
     // for example '00' - means first row and first cell , '25' - means third row sixth cell
@@ -49,7 +47,7 @@ export const createTable = () => {
     };
     return arr;
   }
-  ////////////////
+  // assigning bombs to cells and also counting bombs happens here
   pickRandomUniqueIndexes().forEach(
     num => {
       const [row, col] = num.split('').map(str => Number(str));
@@ -116,12 +114,12 @@ export const createTable = () => {
       console.log('accessing cell', mines[row][col])
     },
   )
-  ////////////////
 
-  Object.keys(mines) // returns [0,1,2,3,4,5,6,7,8]
+  // recognize empty cells and give them access to their neighbours
+  Object.keys(mines)
     .map(arr =>
       Object.values(
-        mines[arr], // returns array of objects
+        mines[arr],
       ).map((cell: any) => {
         if (cell.bombs_around !== 0) {
           return;

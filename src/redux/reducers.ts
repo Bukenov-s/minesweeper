@@ -40,7 +40,7 @@ export const openCell: Handler<IState, typeof actionCreators.openCell> = (
   }
 }
 
-export const openManyCells = (state, { ids }) => {
+export const setManyCellsOpen = (state, { ids }) => {
   const updatedMines = { ...state.mines };
   ids.forEach(id => {
     const [row, col] = id.split('').map(str => Number(str));
@@ -69,7 +69,7 @@ export const HANDLERS = {
   [TYPES.STOP_GAME]: stopGame,
   [TYPES.START_GAME]: startGame,
   [TYPES.OPEN_CELL]: openCell,
-  [TYPES.OPEN_MANY_CELLS]: openManyCells,
+  [TYPES.SET_MANY_CELLS_OPEN]: setManyCellsOpen,
   [TYPES.TOGGLE_AS_BOMB]: toggleAsBomb,
 }
 

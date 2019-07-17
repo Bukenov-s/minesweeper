@@ -34,9 +34,10 @@ const Cell: React.FC<any> = memo(({
         return;
       }
 
-      if (neighbours.length) {
-        openManyCells(neighbours);
-      }
+      // if (neighbours.length) {
+      //   // TODO: create a saga for this
+      //   openManyCells(neighbours);
+      // }
 
       console.log(has_bomb);
       if (has_bomb) {
@@ -69,7 +70,7 @@ const Cell: React.FC<any> = memo(({
         ${open && 'open'} 
         ${gameOver && 'exploded'}`
       }
-      style={has_bomb ? { background: 'red' } : null}
+      //style={has_bomb ? { background: 'red' } : null}
       onClick={handleClick}
       onContextMenu={handleRightClick}
       disabled={gameOver}
