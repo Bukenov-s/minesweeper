@@ -14,7 +14,6 @@ const mapDispatchToProps = {
   stopGame: actionCreators.stopGame,
   openCell: actionCreators.openCell,
   toggleAsBomb: actionCreators.toggleAsBomb,
-  openManyCells: actionCreators.openManyCells,
 }
 
 type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
@@ -24,7 +23,6 @@ const Table: React.FC<any> = ({
   gameOver,
   stopGame,
   openCell,
-  openManyCells,
   toggleAsBomb,
 }) => {
   return (
@@ -33,20 +31,28 @@ const Table: React.FC<any> = ({
         .map(arr =>
           Object.values(
             mines[arr], // returns array of objects
-          ).map((cell: any) => (
+          ).map(({
+            id,
+            row,
+            col,
+            has_bomb,
+            bombs_around,
+            open,
+            flagged,
+            neighbours,
+          }: any) => (
             <Cell
-              key={cell.row.toString() + cell.col.toString()}
-              id={cell.id}
-              row={cell.row}
-              col={cell.col}
-              has_bomb={cell.has_bomb}
-              bombs_around={cell.bombs_around}
-              open={cell.open}
-              flagged={cell.flagged}
-              neighbours={cell.neighbours}
+              key={row.toString() + col.toString()}
+              id={id}
+              row={row}
+              col={col}
+              has_bomb={has_bomb}
+              bombs_around={bombs_around}
+              open={open}
+              flagged={flagged}
+              neighbours={neighbours}
               stopGame={stopGame}
               openCell={openCell}
-              openManyCells={openManyCells}
               toggleAsBomb={toggleAsBomb}
               gameOver={gameOver}
             />

@@ -2,11 +2,11 @@ import * as TYPES from './types'
 import { IState, Handler } from '~/types'
 import * as actionCreators from '~/redux/actions'
 import { createReducer } from 'reduxsauce'
-import { createTable, table } from '~/utils/algorithms'
+import { createTable } from '~/utils/algorithms'
 
 export const INITIAL_STATE: IState = {
   gameOver: false,
-  mines: createTable(),
+  mines: createTable(9, 9),
   bombs: 9,
 }
 
@@ -23,7 +23,7 @@ export const startGame: Handler<IState, typeof actionCreators.startGame> = (
   action,
 ) => ({
   ...state,
-  mines: createTable(),
+  mines: createTable(9, 9),
   gameOver: false,
 })
 

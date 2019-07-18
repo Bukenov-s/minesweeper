@@ -4,12 +4,12 @@
 
 // generates objects of objects
 // with indexes as keys and objects as values
-export const createTable = () => {
+export const createTable = (rows, cols) => {
   // generate initial empty table
   const mines = {}
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < rows; i++) {
     mines[i] = {}
-    for (let j = 0; j < 9; j++) {
+    for (let j = 0; j < cols; j++) {
       mines[i][j] = {}
       mines[i][j] = {
         id: i.toString() + j.toString(),
@@ -30,8 +30,8 @@ export const createTable = () => {
     // for example '00' - means first row and first cell , '25' - means third row sixth cell
     const allPossibleIndexes = (function () {
       const arr = [];
-      for (let i = 0; i < 9; i++) {
-        for (let j = 0; j < 9; j++) {
+      for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
           arr.push(i + '' + j);
         }
       }
@@ -217,4 +217,4 @@ export const createTable = () => {
   return mines
 }
 
-export const table = createTable()
+//export const table = createTable()

@@ -6,6 +6,7 @@ export interface ICell {
   bombs_around: number
   open: boolean
   flagged: boolean
+  neighbours: any[]
 }
 
 export interface IRow {

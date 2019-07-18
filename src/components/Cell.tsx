@@ -8,7 +8,7 @@ const CellActions = {
   toggleAsBomb: actionCreators.toggleAsBomb,
 }
 
-type Props = ICell & typeof CellActions & { gameOver: boolean }
+// type Props = ICell & typeof CellActions & { gameOver: boolean }
 
 const Cell: React.FC<any> = memo(({
   gameOver,
@@ -20,7 +20,6 @@ const Cell: React.FC<any> = memo(({
   col,
   neighbours,
   openCell,
-  openManyCells,
   stopGame,
   toggleAsBomb,
   id,

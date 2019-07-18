@@ -21,7 +21,12 @@ const Panel: React.FC<Props> = ({ gameOver, bombs, startGame }) => {
 
   return (
     <div className="panel">
-
+      <button
+        onClick={handleStartClick}
+        className="restart"
+      >
+        restart
+      </button>
     </div>
   )
 }

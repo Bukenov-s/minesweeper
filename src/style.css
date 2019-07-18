@@ -28,10 +28,11 @@
   border: 1px solid black;
 }
 
-.start-btn {
-  background: #fff;
+.restart {
+  outline: none;
+  padding: 5px 10px;
   border: 1px solid black;
-  padding: 0.25rem;
+  background: none;
 }
 
 .row {
