@@ -34,7 +34,7 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       '~': path.resolve(__dirname, 'src/'),
-      //'react-dom': '@hot-loader/react-dom',
+      'react-dom': '@hot-loader/react-dom',
     },
   },
   devServer: {
