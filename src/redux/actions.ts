@@ -15,16 +15,6 @@ export const openCell = (id: number, row: number, cell: number) => ({
   cell,
 })
 
-export const setManyCellsOpen = (ids: string[]) => ({
-  type: TYPES.SET_MANY_CELLS_OPEN,
-  ids,
-})
-
-export const openManyCells = (ids: string[]) => ({
-  type: TYPES.OPEN_MANY_CELLS,
-  ids,
-})
-
 export const toggleAsBomb = (id: number, row: number, cell: number) => ({
   type: TYPES.TOGGLE_AS_BOMB,
   id,
