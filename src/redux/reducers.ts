@@ -27,12 +27,12 @@ export const startGame: Handler<IState, typeof actionCreators.startGame> = (
   gameOver: false,
 })
 
-export const openCell: Handler<IState, typeof actionCreators.openCell> = (
+export const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
   state,
-  { id, row, cell },
+  { id, row, col },
 ) => {
   const updatedMines = { ...state.mines }
-  updatedMines[row][cell].open = true
+  updatedMines[row][col].open = true
 
   return {
     ...state,
@@ -43,9 +43,9 @@ export const openCell: Handler<IState, typeof actionCreators.openCell> = (
 export const toggleAsBomb: Handler<
   IState,
   typeof actionCreators.toggleAsBomb
-> = (state, { id, row, cell }) => {
+> = (state, { id, row, col }) => {
   const updatedMines = { ...state.mines }
-  updatedMines[row][cell].flagged = !updatedMines[row][cell].flagged
+  updatedMines[row][col].flagged = !updatedMines[row][col].flagged
 
   return {
     ...state,
@@ -56,7 +56,7 @@ export const toggleAsBomb: Handler<
 export const HANDLERS = {
   [TYPES.STOP_GAME]: stopGame,
   [TYPES.START_GAME]: startGame,
-  [TYPES.OPEN_CELL]: openCell,
+  [TYPES.SET_CELL_OPEN]: setCellOpen,
   [TYPES.TOGGLE_AS_BOMB]: toggleAsBomb,
 }
 

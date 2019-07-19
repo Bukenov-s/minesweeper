@@ -4,8 +4,12 @@ import * as actionCreators from './actions';
 
 const getMines = state => state.minesweeper.mines;
 
+function* openCellSaga({id, row, col}: ReturnType<typeof actionCreators.openCell>) {
+  yield put(actionCreators.setCellOpen(id, row, col))
+}
+
 function* flow() {
-  // no flow yet
+  yield takeLatest(TYPES.OPEN_CELL, openCellSaga);
 }
 
 export default function* rootSaga() {

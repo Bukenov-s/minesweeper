@@ -20,6 +20,7 @@ export const createTable = (rows, cols) => {
         coordinates: i.toString() + j.toString(),
         has_bomb: false,
         bombs_around: 0,
+        empty: true,
         open: false,
         flagged: false,
         neighbours: [],
@@ -53,7 +54,7 @@ export const createTable = (rows, cols) => {
   // assigning bombs to cells and also counting bombs happens here
   pickRandomUniqueIndexes().forEach(
     num => {
-      const [row, col] = num.split('').map(str => Number(str));
+      const [row, col] = num.split('').map(str => +str);
       switch (col) {
         case 0:
           if (row === 0) {
@@ -114,6 +115,7 @@ export const createTable = (rows, cols) => {
           }
       }
       mines[row][col].has_bomb = true;
+      mines[row][col].empty = false;
       console.log('accessing cell', mines[row][col])
     },
   )
@@ -219,5 +221,3 @@ export const createTable = (rows, cols) => {
 
   return mines
 }
-
-//export const table = createTable()
