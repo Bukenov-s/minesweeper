@@ -1,6 +1,5 @@
 import React, { FC, MouseEventHandler, useCallback, memo } from 'react'
 import { ICell } from '~/types'
-import * as actionCreators from '~/redux/actions'
 
 interface IProps {
   id: string;
@@ -29,24 +28,20 @@ const Cell: FC<IProps> = memo(({
   openCell,
   toggleAsBomb,
 }) => {
-  const handleClick = useCallback(
-    () => {
+
+  const handleClick = useCallback(() => {
       if (open || flagged) {
         console.log('click ignored because cell is either open or flagged');
         return null;
       }
 
       openCell(row, col)
-    },
-    [open, flagged, row, col, openCell],
+    }, [open, flagged, row, col, openCell],
   )
 
-  const handleRightClick: MouseEventHandler<
-    HTMLButtonElement
-  > = useCallback(evt => {
+  const handleRightClick: MouseEventHandler<HTMLButtonElement> = useCallback(evt => {
     evt.preventDefault()
     if (open) {
-      console.log('click ignored because this cell is open');
       return;
     }
 

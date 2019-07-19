@@ -1,19 +1,6 @@
-import { takeLatest, put, select, delay, all, call } from 'redux-saga/effects';
+import { takeLatest, put, select, call } from 'redux-saga/effects';
 import * as TYPES from './types';
 import * as actionCreators from './actions';
-
-//  HOW RECURSION SHOULD HAPPEN
-//  1. Start recursion if cell is empty
-//  2. 
-//
-//
-//
-//
-//
-//
-// - open all eight neighbours if they are not open already
-// neighbour is empty?  
-// - open all eight neighbours if they are not open already
 
 const getMines = state => state.minesweeper.mines;
 

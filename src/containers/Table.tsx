@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { connect } from 'react-redux'
-import { ICell } from '~/types';
 import * as actionCreators from '~/redux/actions'
 import Cell from '~/components/Cell'
 
@@ -25,10 +24,10 @@ const Table: FC<Props> = ({
 }) => {
   return (
     <div className="table">
-      {Object.keys(mines) // returns [0,1,2,3,4,5,6,7,8]
+      {Object.keys(mines)
         .map(arr =>
           Object.values(
-            mines[arr], // returns array of objects
+            mines[arr],
           ).map(({
             id,
             row,
