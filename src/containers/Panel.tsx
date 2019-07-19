@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { FC, useCallback } from 'react'
 import { connect } from 'react-redux'
 import * as actionCreators from '~/redux/actions'
 
@@ -13,7 +13,7 @@ const mapDispatchToProps = {
 
 type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
 
-const Panel: React.FC<Props> = ({ gameOver, bombs, startGame }) => {
+const Panel: FC<Props> = ({ gameOver, bombs, startGame }) => {
 
   const handleStartClick = useCallback(() => {
     startGame()

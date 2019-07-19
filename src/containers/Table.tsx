@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { connect } from 'react-redux'
 import { ICell } from '~/types';
 import * as actionCreators from '~/redux/actions'
@@ -17,7 +17,7 @@ const mapDispatchToProps = {
 
 type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
 
-const Table: React.FC<any> = ({
+const Table: FC<Props> = ({
   mines,
   gameOver,
   openCell,

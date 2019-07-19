@@ -1,26 +1,33 @@
-import React, { useCallback, memo } from 'react'
+import React, { FC, useCallback, memo } from 'react'
 import { ICell } from '~/types'
 import * as actionCreators from '~/redux/actions'
 
-const CellActions = {
-  openCell: actionCreators.openCell,
-  toggleAsBomb: actionCreators.toggleAsBomb,
+interface IProps {
+  id: string;
+  row: number;
+  col: number;
+  has_bomb: boolean;
+  open: boolean;
+  flagged: boolean;
+  neighbours: any[];
+  bombs_around: number;
+  gameOver: boolean;
+  openCell: (row: number, col: number) => any;
+  toggleAsBomb: (row: number, col: number) => any;
 }
 
-// type Props = ICell & typeof CellActions & { gameOver: boolean }
-
-const Cell: React.FC<any> = memo(({
-  gameOver,
-  has_bomb,
-  bombs_around,
-  open,
-  flagged,
+const Cell: FC<IProps> = memo(({
+  id,
   row,
   col,
+  has_bomb,
+  open,
+  flagged,
   neighbours,
+  bombs_around,
+  gameOver,
   openCell,
   toggleAsBomb,
-  id,
 }) => {
   const handleClick = useCallback(
     () => {
