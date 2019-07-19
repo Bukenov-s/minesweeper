@@ -29,12 +29,6 @@ function* openCellRecursive(row, col){
     if(!neighbour_cell.open){
       yield put(actionCreators.setCellOpen(row, col));  
     }
-    
-    // if(neighbour_cell.bombs_around === 0){
-    //   yield call(openCellRecursive, row, col);
-    // } else {
-    //   return null;
-    // }
   }
 
   for(let i = 0; i < this_cell.neighbours.length; i++) {
@@ -47,9 +41,6 @@ function* openCellRecursive(row, col){
       return null;
     }
   }
-  
-  // conditional should be here
-
   console.log('recursive saga fires');
 }
 
