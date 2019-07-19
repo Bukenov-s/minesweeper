@@ -1,3 +1,5 @@
+const uuidv1 = require('uuid/v1');
+
 // 1. generate object of row objects of cell objects
 // 2. generate random indexes to assign bombs to cells
 // 3. count bombs
@@ -12,9 +14,10 @@ export const createTable = (rows, cols) => {
     for (let j = 0; j < cols; j++) {
       mines[i][j] = {}
       mines[i][j] = {
-        id: i.toString() + j.toString(),
+        id: uuidv1(),
         row: i,
         col: j,
+        coordinates: i.toString() + j.toString(),
         has_bomb: false,
         bombs_around: 0,
         open: false,
@@ -128,24 +131,24 @@ export const createTable = (rows, cols) => {
           case 0:
             if (cell.row === 0) {
               cell.neighbours.push(
-                mines[cell.row][cell.col + 1].id,
-                mines[cell.row + 1][cell.col].id,
-                mines[cell.row + 1][cell.col + 1].id,
+                mines[cell.row][cell.col + 1].coordinates,
+                mines[cell.row + 1][cell.col].coordinates,
+                mines[cell.row + 1][cell.col + 1].coordinates,
               );
             } else if (cell.row === 8) {
               cell.neighbours.push(
-                mines[cell.row][cell.col + 1].id,
-                mines[cell.row - 1][cell.col].id,
-                mines[cell.row - 1][cell.col + 1].id,
+                mines[cell.row][cell.col + 1].coordinates,
+                mines[cell.row - 1][cell.col].coordinates,
+                mines[cell.row - 1][cell.col + 1].coordinates,
               )
 
             } else {
               cell.neighbours.push(
-                mines[cell.row][cell.col + 1].id,
-                mines[cell.row - 1][cell.col].id,
-                mines[cell.row - 1][cell.col + 1].id,
-                mines[cell.row + 1][cell.col].id,
-                mines[cell.row + 1][cell.col + 1].id,
+                mines[cell.row][cell.col + 1].coordinates,
+                mines[cell.row - 1][cell.col].coordinates,
+                mines[cell.row - 1][cell.col + 1].coordinates,
+                mines[cell.row + 1][cell.col].coordinates,
+                mines[cell.row + 1][cell.col + 1].coordinates,
               )
 
             }
@@ -153,25 +156,25 @@ export const createTable = (rows, cols) => {
           case 8:
             if (cell.row === 0) {
               cell.neighbours.push(
-                mines[cell.row][cell.col - 1].id,
-                mines[cell.row + 1][cell.col].id,
-                mines[cell.row + 1][cell.col - 1].id,
+                mines[cell.row][cell.col - 1].coordinates,
+                mines[cell.row + 1][cell.col].coordinates,
+                mines[cell.row + 1][cell.col - 1].coordinates,
               );
 
             } else if (cell.row === 8) {
               cell.neighbours.push(
-                mines[cell.row][cell.col - 1].id,
-                mines[cell.row - 1][cell.col].id,
-                mines[cell.row - 1][cell.col - 1].id,
+                mines[cell.row][cell.col - 1].coordinates,
+                mines[cell.row - 1][cell.col].coordinates,
+                mines[cell.row - 1][cell.col - 1].coordinates,
               )
 
             } else {
               cell.neighbours.push(
-                mines[cell.row][cell.col - 1].id,
-                mines[cell.row - 1][cell.col].id,
-                mines[cell.row - 1][cell.col - 1].id,
-                mines[cell.row + 1][cell.col].id,
-                mines[cell.row + 1][cell.col - 1].id,
+                mines[cell.row][cell.col - 1].coordinates,
+                mines[cell.row - 1][cell.col].coordinates,
+                mines[cell.row - 1][cell.col - 1].coordinates,
+                mines[cell.row + 1][cell.col].coordinates,
+                mines[cell.row + 1][cell.col - 1].coordinates,
               )
 
             }
@@ -179,32 +182,32 @@ export const createTable = (rows, cols) => {
           default:
             if (cell.row === 0) {
               cell.neighbours.push(
-                mines[cell.row][cell.col - 1].id,
-                mines[cell.row][cell.col + 1].id,
-                mines[cell.row + 1][cell.col].id,
-                mines[cell.row + 1][cell.col - 1].id,
-                mines[cell.row + 1][cell.col + 1].id,
+                mines[cell.row][cell.col - 1].coordinates,
+                mines[cell.row][cell.col + 1].coordinates,
+                mines[cell.row + 1][cell.col].coordinates,
+                mines[cell.row + 1][cell.col - 1].coordinates,
+                mines[cell.row + 1][cell.col + 1].coordinates,
               )
 
             } else if (cell.row === 8) {
               cell.neighbours.push(
-                mines[cell.row][cell.col - 1].id,
-                mines[cell.row][cell.col + 1].id,
-                mines[cell.row - 1][cell.col].id,
-                mines[cell.row - 1][cell.col - 1].id,
-                mines[cell.row - 1][cell.col + 1].id,
+                mines[cell.row][cell.col - 1].coordinates,
+                mines[cell.row][cell.col + 1].coordinates,
+                mines[cell.row - 1][cell.col].coordinates,
+                mines[cell.row - 1][cell.col - 1].coordinates,
+                mines[cell.row - 1][cell.col + 1].coordinates,
               )
 
             } else {
               cell.neighbours.push(
-                mines[cell.row][cell.col - 1].id,
-                mines[cell.row][cell.col + 1].id,
-                mines[cell.row - 1][cell.col].id,
-                mines[cell.row - 1][cell.col - 1].id,
-                mines[cell.row - 1][cell.col + 1].id,
-                mines[cell.row + 1][cell.col].id,
-                mines[cell.row + 1][cell.col - 1].id,
-                mines[cell.row + 1][cell.col + 1].id,
+                mines[cell.row][cell.col - 1].coordinates,
+                mines[cell.row][cell.col + 1].coordinates,
+                mines[cell.row - 1][cell.col].coordinates,
+                mines[cell.row - 1][cell.col - 1].coordinates,
+                mines[cell.row - 1][cell.col + 1].coordinates,
+                mines[cell.row + 1][cell.col].coordinates,
+                mines[cell.row + 1][cell.col - 1].coordinates,
+                mines[cell.row + 1][cell.col + 1].coordinates,
               )
 
             }
