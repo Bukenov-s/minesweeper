@@ -11,7 +11,6 @@ const mapStateToProps = ({ minesweeper }) => ({
 })
 
 const mapDispatchToProps = {
-  stopGame: actionCreators.stopGame,
   openCell: actionCreators.openCell,
   toggleAsBomb: actionCreators.toggleAsBomb,
 }
@@ -21,7 +20,6 @@ type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
 const Table: React.FC<any> = ({
   mines,
   gameOver,
-  stopGame,
   openCell,
   toggleAsBomb,
 }) => {
@@ -42,7 +40,7 @@ const Table: React.FC<any> = ({
             neighbours,
           }: any) => (
             <Cell
-              key={row.toString() + col.toString()}
+              key={id}
               id={id}
               row={row}
               col={col}
@@ -51,7 +49,6 @@ const Table: React.FC<any> = ({
               open={open}
               flagged={flagged}
               neighbours={neighbours}
-              stopGame={stopGame}
               openCell={openCell}
               toggleAsBomb={toggleAsBomb}
               gameOver={gameOver}

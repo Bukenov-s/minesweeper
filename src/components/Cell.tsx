@@ -4,7 +4,6 @@ import * as actionCreators from '~/redux/actions'
 
 const CellActions = {
   openCell: actionCreators.openCell,
-  stopGame: actionCreators.stopGame,
   toggleAsBomb: actionCreators.toggleAsBomb,
 }
 
@@ -20,32 +19,17 @@ const Cell: React.FC<any> = memo(({
   col,
   neighbours,
   openCell,
-  stopGame,
   toggleAsBomb,
   id,
 }) => {
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
-    evt => {
-      //evt.preventDefault()
-      //console.log({ id, row, col, has_bomb, bombs_around, open, flagged });
+  const handleClick = useCallback(
+    () => {
       if (open || flagged) {
         console.log('click ignored because cell is either open or flagged');
         return;
       }
 
-      // if (neighbours.length) {
-      //   // TODO: create a saga for this
-      //   openManyCells(neighbours);
-      // }
-
-      console.log(has_bomb);
-      if (has_bomb) {
-        stopGame();
-        console.log(`cell with id ${id} had bomb`);
-        return;
-      }
-
-      openCell(id, row, col)
+      openCell(row, col)
       console.log(`cell with id ${id} is empty`)
     },
     [],
@@ -58,7 +42,8 @@ const Cell: React.FC<any> = memo(({
     if (open) {
       return
     }
-    toggleAsBomb(id, row, col)
+
+    toggleAsBomb(row, col)
   }, [])
 
   return (

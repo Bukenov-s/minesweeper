@@ -8,23 +8,20 @@ export const startGame = () => ({
   type: TYPES.START_GAME,
 })
 
-export const openCell = (id: number, row: number, col: number) => ({
+export const openCell = (row: number, col: number) => ({
   type: TYPES.OPEN_CELL,
-  id,
   row,
   col,
 })
 
-export const setCellOpen = (id: number, row: number, col: number) => ({
+export const setCellOpen = (row: number, col: number) => ({
   type: TYPES.SET_CELL_OPEN,
-  id,
   row,
   col,
 })
 
-export const toggleAsBomb = (id: number, row: number, col: number) => ({
+export const toggleAsBomb = (row: number, col: number) => ({
   type: TYPES.TOGGLE_AS_BOMB,
-  id,
   row,
   col,
 })

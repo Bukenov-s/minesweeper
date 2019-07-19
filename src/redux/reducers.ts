@@ -4,13 +4,13 @@ import * as actionCreators from '~/redux/actions'
 import { createReducer } from 'reduxsauce'
 import { createTable } from '~/utils/algorithms'
 
-export const INITIAL_STATE: IState = {
+const INITIAL_STATE: IState = {
   gameOver: false,
   mines: createTable(9, 9),
   bombs: 9,
 }
 
-export const stopGame: Handler<IState, typeof actionCreators.stopGame> = (
+const stopGame: Handler<IState, typeof actionCreators.stopGame> = (
   state,
   action,
 ) => ({
@@ -18,7 +18,7 @@ export const stopGame: Handler<IState, typeof actionCreators.stopGame> = (
   gameOver: true,
 })
 
-export const startGame: Handler<IState, typeof actionCreators.startGame> = (
+const startGame: Handler<IState, typeof actionCreators.startGame> = (
   state,
   action,
 ) => ({
@@ -27,9 +27,9 @@ export const startGame: Handler<IState, typeof actionCreators.startGame> = (
   gameOver: false,
 })
 
-export const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
+const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
   state,
-  { id, row, col },
+  { row, col },
 ) => {
   const updatedMines = { ...state.mines }
   updatedMines[row][col].open = true
@@ -40,10 +40,10 @@ export const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
   }
 }
 
-export const toggleAsBomb: Handler<
+const toggleAsBomb: Handler<
   IState,
   typeof actionCreators.toggleAsBomb
-> = (state, { id, row, col }) => {
+> = (state, { row, col }) => {
   const updatedMines = { ...state.mines }
   updatedMines[row][col].flagged = !updatedMines[row][col].flagged
 
@@ -53,7 +53,7 @@ export const toggleAsBomb: Handler<
   }
 }
 
-export const HANDLERS = {
+const HANDLERS = {
   [TYPES.STOP_GAME]: stopGame,
   [TYPES.START_GAME]: startGame,
   [TYPES.SET_CELL_OPEN]: setCellOpen,
