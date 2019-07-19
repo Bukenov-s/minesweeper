@@ -1,4 +1,4 @@
-import React, { FC, useCallback, memo } from 'react'
+import React, { FC, MouseEventHandler, useCallback, memo } from 'react'
 import { ICell } from '~/types'
 import * as actionCreators from '~/redux/actions'
 
@@ -35,16 +35,13 @@ const Cell: FC<IProps> = memo(({
         console.log('click ignored because cell is either open or flagged');
         return null;
       }
-      console.log('open', open);
-      console.log('flagged', flagged);
 
       openCell(row, col)
-      console.log(`cell with id ${id} is empty`)
     },
     [open, flagged, row, col, openCell],
   )
 
-  const handleRightClick: React.MouseEventHandler<
+  const handleRightClick: MouseEventHandler<
     HTMLButtonElement
   > = useCallback(evt => {
     evt.preventDefault()
