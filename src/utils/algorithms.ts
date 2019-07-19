@@ -17,7 +17,7 @@ export const createTable = (rows, cols) => {
         id: uuidv1(),
         row: i,
         col: j,
-        coordinates: i.toString() + j.toString(),
+        coordinates: {row: i, col: j},
         has_bomb: false,
         bombs_around: 0,
         empty: true,

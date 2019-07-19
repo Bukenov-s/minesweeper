@@ -33,13 +33,15 @@ const Cell: FC<IProps> = memo(({
     () => {
       if (open || flagged) {
         console.log('click ignored because cell is either open or flagged');
-        return;
+        return null;
       }
+      console.log('open', open);
+      console.log('flagged', flagged);
 
       openCell(row, col)
       console.log(`cell with id ${id} is empty`)
     },
-    [],
+    [open, flagged, row, col, openCell],
   )
 
   const handleRightClick: React.MouseEventHandler<
@@ -47,11 +49,12 @@ const Cell: FC<IProps> = memo(({
   > = useCallback(evt => {
     evt.preventDefault()
     if (open) {
-      return
+      console.log('click ignored because this cell is open');
+      return;
     }
 
     toggleAsBomb(row, col)
-  }, [])
+  }, [open, row, col, toggleAsBomb])
 
   return (
     <button
