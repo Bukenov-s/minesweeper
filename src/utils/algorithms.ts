@@ -17,7 +17,7 @@ export const createTable = (rows, cols) => {
         id: uuidv1(),
         row: i,
         col: j,
-        coordinates: {row: i, col: j},
+        coordinates: { row: i, col: j },
         has_bomb: false,
         bombs_around: 0,
         empty: true,
@@ -116,7 +116,6 @@ export const createTable = (rows, cols) => {
       }
       mines[row][col].has_bomb = true;
       mines[row][col].empty = false;
-      console.log('accessing cell', mines[row][col])
     },
   )
 

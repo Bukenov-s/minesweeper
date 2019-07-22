@@ -30,13 +30,12 @@ const Cell: FC<IProps> = memo(({
 }) => {
 
   const handleClick = useCallback(() => {
-      if (open || flagged) {
-        console.log('click ignored because cell is either open or flagged');
-        return null;
-      }
+    if (open || flagged) {
+      return null;
+    }
 
-      openCell(row, col)
-    }, [open, flagged, row, col, openCell],
+    openCell(row, col)
+  }, [open, flagged, row, col, openCell],
   )
 
   const handleRightClick: MouseEventHandler<HTMLButtonElement> = useCallback(evt => {

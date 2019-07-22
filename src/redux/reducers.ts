@@ -5,9 +5,10 @@ import { createReducer } from 'reduxsauce'
 import { createTable } from '~/utils/algorithms'
 
 const INITIAL_STATE: IState = {
-  gameOver: false,
+  game_over: false,
   mines: createTable(9, 9),
   bombs: 9,
+  have_bombs: [],
 }
 
 const stopGame: Handler<IState, typeof actionCreators.stopGame> = (
@@ -15,7 +16,7 @@ const stopGame: Handler<IState, typeof actionCreators.stopGame> = (
   action,
 ) => ({
   ...state,
-  gameOver: true,
+  game_over: true,
 })
 
 const startGame: Handler<IState, typeof actionCreators.startGame> = (
@@ -24,7 +25,7 @@ const startGame: Handler<IState, typeof actionCreators.startGame> = (
 ) => ({
   ...state,
   mines: createTable(9, 9),
-  gameOver: false,
+  game_over: false,
 })
 
 const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
