@@ -8,6 +8,7 @@ const INITIAL_STATE: IState = {
   game_over: false,
   mines: createTable(9, 9),
   bombs: 9,
+  cells_count: 81,
   have_bombs: [],
 }
 
@@ -38,6 +39,7 @@ const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
   return {
     ...state,
     mines: updatedMines,
+    cells_count: --state.cells_count,
   }
 }
 

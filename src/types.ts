@@ -18,10 +18,11 @@ export interface Mines {
 }
 
 export interface IState {
-  game_over: boolean
-  mines: any
-  bombs: number
-  have_bombs: any[]
+  game_over: boolean;
+  mines: any;
+  bombs: number;
+  cells_count: number;
+  have_bombs: any[];
 }
 
 export type Handler<P, T> = (
