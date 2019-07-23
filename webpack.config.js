@@ -3,12 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { CheckerPlugin } = require('awesome-typescript-loader')
 
+const output_directory = 'dist';
+
 module.exports = {
   entry: ['react-hot-loader/patch', './src/index.tsx'],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, output_directory),
     filename: 'bundle.js',
   },
+  
   module: {
     rules: [
       {
@@ -44,7 +47,7 @@ module.exports = {
   },
   plugins: [
     new CheckerPlugin(),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin([output_directory]),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico',
