@@ -3,6 +3,7 @@ import * as TYPES from './types';
 import * as actionCreators from './actions';
 
 const getMines = state => state.minesweeper.mines;
+const getCellsCount = state => state.minesweeper.cells_count;
 
 // recursive saga
 function* openCellRecursive(row, col) {
@@ -34,11 +35,16 @@ function* openCellRecursive(row, col) {
 
 function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>) {
   const mines = yield select(getMines);
+  const cells_count = yield select(getCellsCount);
   const this_cell = mines[row][col];
 
+  if(cells_count === 81){
+    yield put(actionCreators.startTimer());
+  }
   // stop game once app rans into cell with bomb
   // and quit saga as well
   if (this_cell.has_bomb) {
+    yield put(actionCreators.stopTimer())
     yield put(actionCreators.stopGame());
     return;
   }
