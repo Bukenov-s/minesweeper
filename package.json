@@ -4,15 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --devtool inline-source-map --hot"
+    "start": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
+  "homepage": "https://bukenov-s.github.io/minesweeper",
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.4.5",
     "@hot-loader/react-dom": "^16.8.6",
     "babel-polyfill": "^6.26.0",
+    "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.9.0",
