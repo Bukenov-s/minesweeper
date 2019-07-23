@@ -22,7 +22,7 @@ module.exports = {
         },
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)?$/,
         use: {
           loader: 'awesome-typescript-loader',
         },
@@ -34,7 +34,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['*', '.ts', '.tsx', '.js', '.jsx', '.json'],
     alias: {
       '~': path.resolve(__dirname, 'src/'),
       'react-dom': '@hot-loader/react-dom',
