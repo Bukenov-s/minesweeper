@@ -10,7 +10,10 @@ const INITIAL_STATE: IState = {
   bombs: 9,
   cells_count: 81,
   have_bombs: [],
-  timer: false,
+  timer: {
+    is_running: false,
+    is_reset: false,
+  },
 }
 
 const stopGame: Handler<IState, typeof actionCreators.stopGame> = (
@@ -28,6 +31,10 @@ const startGame: Handler<IState, typeof actionCreators.startGame> = (
   ...state,
   mines: createTable(9, 9),
   game_over: false,
+  timer: {
+    ...state.timer,
+    is_running: false
+  }
 })
 
 const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
@@ -57,11 +64,39 @@ const toggleAsBomb: Handler<
   }
 }
 
+const startTimer: Handler<
+IState,
+typeof actionCreators.startTimer
+> = (state) => {
+  return {
+    ...state,
+    timer: {
+      ...state.timer,
+      is_running: true
+    }
+  }
+}
+
+const stopTimer: Handler<
+IState,
+typeof actionCreators.startTimer
+> = (state) => {
+  return {
+    ...state,
+    timer: {
+      ...state.timer,
+      is_running: false
+    }
+  }
+}
+
 const HANDLERS = {
   [TYPES.STOP_GAME]: stopGame,
   [TYPES.START_GAME]: startGame,
   [TYPES.SET_CELL_OPEN]: setCellOpen,
   [TYPES.TOGGLE_AS_BOMB]: toggleAsBomb,
+  [TYPES.START_TIMER]: startTimer,
+  [TYPES.STOP_TIMER]: stopTimer,
 }
 
 export default createReducer<IState, any>(INITIAL_STATE, HANDLERS)
