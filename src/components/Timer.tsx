@@ -10,6 +10,7 @@ interface IProps {
 const Timer: FC<IProps> = ({timer}) => {
   const [time, setTime] = useState(0);
   const {is_running, is_reset} = timer;
+  const zeros = '000'.slice(time.toString().length);
 
   useEffect(() => {
     let interval_id;
@@ -32,7 +33,7 @@ const Timer: FC<IProps> = ({timer}) => {
   }, [time, setTime, is_running, is_reset]);
 
   return (
-    <span>{time}</span>
+    <span>{zeros + time}</span>
   )
 }
 
