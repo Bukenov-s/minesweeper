@@ -6,7 +6,7 @@ import Table from '~/containers/Table'
 import Panel from '~/containers/Panel'
 import './style.css'
 
-const App: FC<any> = () => {
+const App: FC<{}> = () => {
   return (
     <Provider store={store}>
       <div className="app">

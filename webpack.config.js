@@ -47,7 +47,7 @@ module.exports = {
   },
   plugins: [
     new CheckerPlugin(),
-    new CleanWebpackPlugin([output_directory]),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/favicon.ico',
