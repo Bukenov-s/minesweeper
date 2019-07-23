@@ -10,6 +10,7 @@ const INITIAL_STATE: IState = {
   bombs: 9,
   cells_count: 81,
   have_bombs: [],
+  timer: false,
 }
 
 const stopGame: Handler<IState, typeof actionCreators.stopGame> = (

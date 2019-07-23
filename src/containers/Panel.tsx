@@ -1,10 +1,11 @@
-import React, { FC, useCallback } from 'react'
+import React, { FC, useState, useCallback } from 'react'
 import { connect } from 'react-redux'
 import * as actionCreators from '~/redux/actions'
 
 const mapStateToProps = ({ minesweeper }) => ({
-  gameOver: minesweeper.gameOver,
+  game_over: minesweeper.game_over,
   bombs: minesweeper.bombs,
+  timer: minesweeper.timer,
 })
 
 const mapDispatchToProps = {
@@ -13,7 +14,8 @@ const mapDispatchToProps = {
 
 type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
 
-const Panel: FC<Props> = ({ gameOver, bombs, startGame }) => {
+const Panel: FC<Props> = ({ game_over, bombs, timer, startGame }) => {
+  const [time, startTime] = useState(0);
 
   const handleStartClick = useCallback(() => {
     startGame()
@@ -22,14 +24,14 @@ const Panel: FC<Props> = ({ gameOver, bombs, startGame }) => {
   return (
     <div className="panel">
       <div>000</div>
-      <span style={{ flex: 1 }} />
+      <span className="spacer" />
       <button
         onClick={handleStartClick}
         className="restart"
       >
         restart
       </button>
-      <span style={{ flex: 1 }} />
+      <span className="spacer" />
       <div>9</div>
     </div>
   )

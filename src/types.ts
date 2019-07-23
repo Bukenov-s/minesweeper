@@ -23,6 +23,7 @@ export interface IState {
   bombs: number;
   cells_count: number;
   have_bombs: any[];
+  timer: boolean | number;
 }
 
 export type Handler<P, T> = (
