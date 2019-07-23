@@ -1,4 +1,4 @@
-import { takeLatest, put, select, call } from 'redux-saga/effects';
+import { takeLatest, put, select, call, delay } from 'redux-saga/effects';
 import * as TYPES from './types';
 import * as actionCreators from './actions';
 
@@ -11,6 +11,8 @@ function* openCellRecursive(row, col) {
   const this_cell = mines[row][col];
 
   yield put(actionCreators.setCellOpen(row, col));
+
+  yield delay(10);
 
   if (this_cell.neighbours.length) {
     for (let i = 0; i < this_cell.neighbours.length; i++) {
@@ -38,7 +40,7 @@ function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>)
   const cells_count = yield select(getCellsCount);
   const this_cell = mines[row][col];
 
-  if(cells_count === 81){
+  if (cells_count === 81) {
     yield put(actionCreators.startTimer());
   }
   // stop game once app rans into cell with bomb
