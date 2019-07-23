@@ -1,6 +1,7 @@
 import React, { FC, useState, useCallback } from 'react'
 import { connect } from 'react-redux'
 import * as actionCreators from '~/redux/actions'
+import { Timer } from '~/components/Timer';
 
 const mapStateToProps = ({ minesweeper }) => ({
   game_over: minesweeper.game_over,
@@ -23,7 +24,7 @@ const Panel: FC<Props> = ({ game_over, bombs, timer, startGame }) => {
 
   return (
     <div className="panel">
-      <div>000</div>
+      <Timer timer={timer} />
       <span className="spacer" />
       <button
         onClick={handleStartClick}

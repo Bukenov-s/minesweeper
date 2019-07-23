@@ -31,8 +31,9 @@ const startGame: Handler<IState, typeof actionCreators.startGame> = (
   ...state,
   mines: createTable(9, 9),
   game_over: false,
+  cells_count: 81,
   timer: {
-    ...state.timer,
+    is_reset: true,
     is_running: false
   }
 })
@@ -71,7 +72,7 @@ typeof actionCreators.startTimer
   return {
     ...state,
     timer: {
-      ...state.timer,
+      is_reset: false,
       is_running: true
     }
   }
@@ -84,7 +85,7 @@ typeof actionCreators.startTimer
   return {
     ...state,
     timer: {
-      ...state.timer,
+      is_reset: false,
       is_running: false
     }
   }
