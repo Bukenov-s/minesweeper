@@ -9,6 +9,7 @@ interface IProps {
   id: string;
   row: number;
   col: number;
+  has_bomb: boolean;
   open: boolean;
   flagged: boolean;
   bombs_around: number;
@@ -21,6 +22,7 @@ const Cell: FC<IProps> = memo(({
   id,
   row,
   col,
+  has_bomb,
   open,
   flagged,
   bombs_around,
@@ -34,7 +36,7 @@ const Cell: FC<IProps> = memo(({
     }
 
     openCell(row, col);
-  }, [open, flagged, row, col, openCell],);
+  }, [open, flagged, row, col, openCell]);
 
   const handleRightClick: MouseEventHandler<HTMLButtonElement> = useCallback((evt) => {
     evt.preventDefault();
@@ -42,8 +44,8 @@ const Cell: FC<IProps> = memo(({
       return;
     }
 
-    toggleAsBomb(row, col);
-  }, [open, row, col, toggleAsBomb]);
+    toggleAsBomb(row, col, has_bomb);
+  }, [open, row, col, has_bomb, toggleAsBomb]);
 
   return (
     <button

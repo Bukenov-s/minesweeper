@@ -23,7 +23,7 @@ export interface IState {
   mines: any;
   bombs: number;
   cells_count: number;
-  have_bombs: {
+  detected: {
     [row: number]: {
       [cell: number]: {
         row: number;

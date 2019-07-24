@@ -20,10 +20,25 @@ export const setCellOpen = (row: number, col: number) => ({
   col,
 });
 
-export const toggleAsBomb = (row: number, col: number) => ({
+export const toggleAsBomb = (row: number, col: number, has_bomb: boolean) => ({
   type: TYPES.TOGGLE_AS_BOMB,
   row,
   col,
+  has_bomb,
+});
+
+export const addToDetected = (row: number, col: number, has_bomb: boolean) => ({
+  type: TYPES.ADD_TO_DETECTED,
+  row,
+  col,
+  has_bomb
+});
+
+export const removeFromDetected = (row: number, col: number, has_bomb: boolean) => ({
+  type: TYPES.REMOVE_FROM_DETECTED,
+  row,
+  col,
+  has_bomb
 });
 
 export const startTimer = () => ({

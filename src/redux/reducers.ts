@@ -10,7 +10,7 @@ const INITIAL_STATE: IState = {
   mines: createTable(9, 9),
   bombs: 9,
   cells_count: 81,
-  have_bombs: {},
+  detected: {},
   timer: {
     is_running: false,
     is_reset: false,
@@ -47,16 +47,6 @@ const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
   };
 };
 
-const toggleAsBomb: Handler<IState, typeof actionCreators.toggleAsBomb> = (state, { row, col }) => {
-  const updatedMines = { ...state.mines };
-  updatedMines[row][col].flagged = !updatedMines[row][col].flagged;
-
-  return {
-    ...state,
-    mines: updatedMines,
-  };
-};
-
 const startTimer: Handler<IState, typeof actionCreators.startTimer> = state => ({
   ...state,
   timer: {
@@ -73,13 +63,39 @@ const stopTimer: Handler<IState, typeof actionCreators.startTimer> = state => ({
   }
 });
 
+const addToDetected: Handler<IState, typeof actionCreators.addToDetected> = (state, { row, col, has_bomb }) => {
+  const updated_mines = { ...state.mines };
+  const updated_detected = { ...state.detected };
+  updated_mines[row][col].flagged = true;
+  updated_detected[row] = { ...state.detected[row] };
+  updated_detected[row][col] = { row, col, has_bomb };
+  return {
+    ...state,
+    mines: updated_mines,
+    detected: updated_detected
+  };
+};
+
+const removeFromDetected: Handler<IState, typeof actionCreators.removeFromDetected> = (state, { row, col }) => {
+  const updated_mines = { ...state.mines };
+  const updated_detected = { ...state.detected };
+  updated_mines[row][col].flagged = false;
+  delete updated_detected[row][col];
+  return {
+    ...state,
+    mines: updated_mines,
+    detected: updated_detected
+  };
+};
+
 const HANDLERS = {
   [TYPES.STOP_GAME]: stopGame,
   [TYPES.START_GAME]: startGame,
   [TYPES.SET_CELL_OPEN]: setCellOpen,
-  [TYPES.TOGGLE_AS_BOMB]: toggleAsBomb,
   [TYPES.START_TIMER]: startTimer,
   [TYPES.STOP_TIMER]: stopTimer,
+  [TYPES.ADD_TO_DETECTED]: addToDetected,
+  [TYPES.REMOVE_FROM_DETECTED]: removeFromDetected,
 };
 
 export default createReducer<IState, any>(INITIAL_STATE, HANDLERS);
