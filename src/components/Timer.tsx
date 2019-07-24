@@ -5,7 +5,7 @@ interface IProps {
     is_running: boolean;
     is_reset: boolean;
   };
-};
+}
 
 const Timer: FC<IProps> = ({ timer }) => {
   const [time, setTime] = useState(0);

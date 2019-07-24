@@ -24,10 +24,8 @@ function* openCellRecursive(row, col) {
     for (let i = 0; i < this_cell.neighbours.length; i++) {
       const { row: this_row, col: this_col } = this_cell.neighbours[i];
       const neighbour_cell = mines[this_row][this_col];
-      console.log(neighbour_cell);
       // recursion should happen only if cell is empty
       if (neighbour_cell.bombs_around === 0 && !neighbour_cell.open) {
-        console.log(this_row, this_col);
         yield call(openCellRecursive, this_row, this_col);
       } else if (neighbour_cell.bombs_around !== 0 && !neighbour_cell.open) {
         yield put(actionCreators.setCellOpen(this_row, this_col));
@@ -36,7 +34,6 @@ function* openCellRecursive(row, col) {
       }
     }
   }
-
   console.log('recursive saga ends');
 }
 

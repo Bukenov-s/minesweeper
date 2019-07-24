@@ -6,10 +6,11 @@ import { createTable } from '~/utils/algorithms';
 
 const INITIAL_STATE: IState = {
   game_over: false,
+  difficulty: 'easy',
   mines: createTable(9, 9),
   bombs: 9,
   cells_count: 81,
-  have_bombs: [],
+  have_bombs: {},
   timer: {
     is_running: false,
     is_reset: false,

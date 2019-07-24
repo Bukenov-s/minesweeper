@@ -19,10 +19,19 @@ export interface Mines {
 
 export interface IState {
   game_over: boolean;
+  difficulty: 'easy' | 'normal' | 'hard';
   mines: any;
   bombs: number;
   cells_count: number;
-  have_bombs: any[];
+  have_bombs: {
+    [row: number]: {
+      [cell: number]: {
+        row: number;
+        cell: number;
+        // has_bomb: boolean;
+      };
+    };
+  } | {};
   timer: {
     is_running: boolean;
     is_reset: boolean;
