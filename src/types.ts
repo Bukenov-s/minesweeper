@@ -1,20 +1,20 @@
 export interface ICell {
-  id: number
-  row: number
-  col: number
-  has_bomb: boolean
-  bombs_around: number
-  open: boolean
-  flagged: boolean
-  neighbours: any[]
+  id: number;
+  row: number;
+  col: number;
+  has_bomb: boolean;
+  bombs_around: number;
+  open: boolean;
+  flagged: boolean;
+  neighbours: any[];
 }
 
 export interface IRow {
-  [index: string]: ICell
+  [index: string]: ICell;
 }
 
 export interface Mines {
-  [index: string]: IRow
+  [index: string]: IRow;
 }
 
 export interface IState {

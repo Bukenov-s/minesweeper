@@ -34,18 +34,18 @@ const Cell: FC<IProps> = memo(({
       return null;
     }
 
-    openCell(row, col)
+    openCell(row, col);
   }, [open, flagged, row, col, openCell],
-  )
+  );
 
-  const handleRightClick: MouseEventHandler<HTMLButtonElement> = useCallback(evt => {
-    evt.preventDefault()
+  const handleRightClick: MouseEventHandler<HTMLButtonElement> = useCallback((evt) => {
+    evt.preventDefault();
     if (open) {
       return;
     }
 
-    toggleAsBomb(row, col)
-  }, [open, row, col, toggleAsBomb])
+    toggleAsBomb(row, col);
+  }, [open, row, col, toggleAsBomb]);
 
   return (
     <button
@@ -55,14 +55,15 @@ const Cell: FC<IProps> = memo(({
         ${open && 'open'} 
         ${(game_over && !open) && 'exploded'}`
       }
-      //style={has_bomb ? { background: 'red' } : null}
+      // style={has_bomb ? { background: 'red' } : null}
       onClick={handleClick}
       onContextMenu={handleRightClick}
       disabled={game_over}
+      type="button"
     >
       {bombs_around > 0 && open ? bombs_around : null}
     </button>
-  )
-})
+  );
+});
 
-export default Cell
+export default Cell;

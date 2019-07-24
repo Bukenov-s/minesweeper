@@ -1,26 +1,29 @@
-import React, { FC, useState, useCallback } from 'react'
-import { connect } from 'react-redux'
-import * as actionCreators from '~/redux/actions'
+import React, { FC, useCallback } from 'react';
+import { connect } from 'react-redux';
+import * as actionCreators from '~/redux/actions';
 import { Timer } from '~/components/Timer';
 
 const mapStateToProps = ({ minesweeper }) => ({
   game_over: minesweeper.game_over,
   bombs: minesweeper.bombs,
   timer: minesweeper.timer,
-})
+});
 
 const mapDispatchToProps = {
   startGame: actionCreators.startGame,
-}
+};
 
 type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
 
-const Panel: FC<Props> = ({ game_over, bombs, timer, startGame }) => {
-  const [time, startTime] = useState(0);
-
+const Panel: FC<Props> = ({
+  game_over,
+  bombs,
+  timer,
+  startGame
+}) => {
   const handleStartClick = useCallback(() => {
-    startGame()
-  }, [])
+    startGame();
+  }, []);
 
   return (
     <div className="panel">
@@ -29,6 +32,7 @@ const Panel: FC<Props> = ({ game_over, bombs, timer, startGame }) => {
       <button
         onClick={handleStartClick}
         className="restart"
+        type="button"
       >
         restart
       </button>
@@ -41,4 +45,4 @@ const Panel: FC<Props> = ({ game_over, bombs, timer, startGame }) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Panel)
+)(Panel);
