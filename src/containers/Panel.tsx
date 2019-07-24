@@ -37,10 +37,10 @@ const Panel: FC<Props> = ({
         restart
       </button>
       <span className="spacer" />
-      <div>9</div>
+      <div>{bombs}</div>
     </div>
-  )
-}
+  );
+};
 
 export default connect(
   mapStateToProps,

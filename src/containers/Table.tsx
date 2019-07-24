@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '~/redux/actions';
 import Cell from '~/components/Cell';
-import { IState } from '~/types';
 
 const mapStateToProps = ({ minesweeper }) => ({
   mines: minesweeper.mines,
@@ -22,42 +21,34 @@ const Table: FC<Props> = ({
   game_over,
   openCell,
   toggleAsBomb,
-}) => {
-  return (
-    <div className="table">
-      {Object.keys(mines)
-        .map(arr =>
-          Object.values(
-            mines[arr],
-          ).map(({
-            id,
-            row,
-            col,
-            has_bomb,
-            bombs_around,
-            open,
-            flagged,
-            neighbours,
-          }: any) => (
-            <Cell
-              key={id}
-              id={id}
-              row={row}
-              col={col}
-              has_bomb={has_bomb}
-              bombs_around={bombs_around}
-              open={open}
-              flagged={flagged}
-              neighbours={neighbours}
-              openCell={openCell}
-              toggleAsBomb={toggleAsBomb}
-              game_over={game_over}
-            />
-          )),
-        )}
-    </div>
-  );
-};
+}) => (
+  <div className="table">
+    {Object.keys(mines)
+      .map(arr => Object.values(mines[arr],).map(({
+        id,
+        row,
+        col,
+        bombs_around,
+        open,
+        flagged,
+      }: any) => (
+        <Cell
+          key={id}
+          id={id}
+          row={row}
+          col={col}
+          bombs_around={bombs_around}
+          open={open}
+          flagged={flagged}
+          openCell={openCell}
+          toggleAsBomb={toggleAsBomb}
+          game_over={game_over}
+        />
+      )),
+      )}
+  </div>
+);
+
 
 export default connect(
   mapStateToProps,

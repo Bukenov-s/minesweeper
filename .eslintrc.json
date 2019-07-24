@@ -24,6 +24,7 @@
     "import/prefer-default-export": 1,
     "import/extensions": 1,
     "no-return-assign": 1,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "max-len": 1,
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/click-events-have-key-events": 0,
@@ -50,5 +51,8 @@
   },
   "env": {
     "jest": true
+  },
+  "settings": {
+    "import/resolver": "webpack"
   }
 }

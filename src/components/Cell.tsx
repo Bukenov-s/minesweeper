@@ -1,14 +1,16 @@
-import React, { FC, MouseEventHandler, useCallback, memo } from 'react'
-import { ICell } from '~/types'
+import React, {
+  FC,
+  MouseEventHandler,
+  useCallback,
+  memo
+} from 'react';
 
 interface IProps {
   id: string;
   row: number;
   col: number;
-  has_bomb: boolean;
   open: boolean;
   flagged: boolean;
-  neighbours: any[];
   bombs_around: number;
   game_over: boolean;
   openCell: (row: number, col: number) => any;
@@ -19,24 +21,20 @@ const Cell: FC<IProps> = memo(({
   id,
   row,
   col,
-  has_bomb,
   open,
   flagged,
-  neighbours,
   bombs_around,
   game_over,
   openCell,
   toggleAsBomb,
 }) => {
-
   const handleClick = useCallback(() => {
     if (open || flagged) {
       return null;
     }
 
     openCell(row, col);
-  }, [open, flagged, row, col, openCell],
-  );
+  }, [open, flagged, row, col, openCell],);
 
   const handleRightClick: MouseEventHandler<HTMLButtonElement> = useCallback((evt) => {
     evt.preventDefault();
