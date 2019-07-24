@@ -44,11 +44,9 @@ const Table: FC<Props> = ({
           toggleAsBomb={toggleAsBomb}
           game_over={game_over}
         />
-      )),
-      )}
+      )))}
   </div>
 );
-
 
 export default connect(
   mapStateToProps,

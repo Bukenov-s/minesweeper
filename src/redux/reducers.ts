@@ -17,18 +17,12 @@ const INITIAL_STATE: IState = {
   },
 };
 
-const stopGame: Handler<IState, typeof actionCreators.stopGame> = (
-  state,
-  action,
-) => ({
+const stopGame: Handler<IState, typeof actionCreators.stopGame> = state => ({
   ...state,
   game_over: true,
 });
 
-const startGame: Handler<IState, typeof actionCreators.startGame> = (
-  state,
-  action,
-) => ({
+const startGame: Handler<IState, typeof actionCreators.startGame> = state => ({
   ...state,
   mines: createTable(9, 9),
   game_over: false,
@@ -63,25 +57,21 @@ const toggleAsBomb: Handler<IState, typeof actionCreators.toggleAsBomb> = (state
   };
 };
 
-const startTimer: Handler<IState, typeof actionCreators.startTimer> = (state) => {
-  return {
-    ...state,
-    timer: {
-      is_reset: false,
-      is_running: true
-    }
-  };
-};
+const startTimer: Handler<IState, typeof actionCreators.startTimer> = state => ({
+  ...state,
+  timer: {
+    is_reset: false,
+    is_running: true
+  }
+});
 
-const stopTimer: Handler<IState, typeof actionCreators.startTimer> = (state) => {
-  return {
-    ...state,
-    timer: {
-      is_reset: false,
-      is_running: false
-    }
-  };
-};
+const stopTimer: Handler<IState, typeof actionCreators.startTimer> = state => ({
+  ...state,
+  timer: {
+    is_reset: false,
+    is_running: false
+  }
+});
 
 const HANDLERS = {
   [TYPES.STOP_GAME]: stopGame,

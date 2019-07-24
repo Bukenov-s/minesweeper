@@ -21,7 +21,7 @@
     "react/prop-types": 0,
     "camelcase": 0,
     "import/no-unresolved": 1,
-    "import/prefer-default-export": 1,
+    "import/prefer-default-export": 0,
     "import/extensions": 1,
     "no-return-assign": 1,
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],

@@ -13,7 +13,7 @@ const App: FC<{}> = () => (
       <Table />
     </div>
   </Provider>
-)
+);
 
 
 export default hot(App);

@@ -8,11 +8,11 @@ const uuidv1 = require('uuid/v1');
 // with indexes as keys and objects as values
 export const createTable = (rows, cols) => {
   // generate initial empty table
-  const mines = {}
+  const mines = {};
   for (let i = 0; i < rows; i++) {
-    mines[i] = {}
+    mines[i] = {};
     for (let j = 0; j < cols; j++) {
-      mines[i][j] = {}
+      mines[i][j] = {};
       mines[i][j] = {
         id: uuidv1(),
         row: i,
@@ -24,13 +24,13 @@ export const createTable = (rows, cols) => {
         open: false,
         flagged: false,
         neighbours: [],
-      }
+      };
     }
   }
 
   // generate random indexes to assign bombs later on
   const pickRandomUniqueIndexes = () => {
-    // generates an array of all possible indexes of cells 
+    // generates an array of all possible indexes of cells
     // for example '00' - means first row and first cell , '25' - means third row sixth cell
     const allPossibleIndexes = (function () {
       const arr = [];
@@ -47,13 +47,12 @@ export const createTable = (rows, cols) => {
       const randomIndex = allPossibleIndexes[randomNumber];
       if (arr.indexOf(randomIndex) > -1) continue;
       arr.push(randomIndex);
-      allPossibleIndexes.splice
-    };
+    }
     return arr;
-  }
+  };
   // assigning bombs to cells and also counting bombs happens here
   pickRandomUniqueIndexes().forEach(
-    num => {
+    (num) => {
       const [row, col] = num.split('').map(str => +str);
       switch (col) {
         case 0:
@@ -117,14 +116,12 @@ export const createTable = (rows, cols) => {
       mines[row][col].has_bomb = true;
       mines[row][col].empty = false;
     },
-  )
+  );
 
   // recognize empty cells and give them access to their neighbours
   Object.keys(mines)
-    .map(arr =>
-      Object.values(
-        mines[arr],
-      ).map((cell: any) => {
+    .map(arr => Object.values(mines[arr])
+      .map((cell: any) => {
         if (cell.bombs_around !== 0) {
           return;
         }
@@ -141,8 +138,7 @@ export const createTable = (rows, cols) => {
                 mines[cell.row][cell.col + 1].coordinates,
                 mines[cell.row - 1][cell.col].coordinates,
                 mines[cell.row - 1][cell.col + 1].coordinates,
-              )
-
+              );
             } else {
               cell.neighbours.push(
                 mines[cell.row][cell.col + 1].coordinates,
@@ -150,8 +146,7 @@ export const createTable = (rows, cols) => {
                 mines[cell.row - 1][cell.col + 1].coordinates,
                 mines[cell.row + 1][cell.col].coordinates,
                 mines[cell.row + 1][cell.col + 1].coordinates,
-              )
-
+              );
             }
             break;
           case 8:
@@ -161,14 +156,12 @@ export const createTable = (rows, cols) => {
                 mines[cell.row + 1][cell.col].coordinates,
                 mines[cell.row + 1][cell.col - 1].coordinates,
               );
-
             } else if (cell.row === 8) {
               cell.neighbours.push(
                 mines[cell.row][cell.col - 1].coordinates,
                 mines[cell.row - 1][cell.col].coordinates,
                 mines[cell.row - 1][cell.col - 1].coordinates,
-              )
-
+              );
             } else {
               cell.neighbours.push(
                 mines[cell.row][cell.col - 1].coordinates,
@@ -176,8 +169,7 @@ export const createTable = (rows, cols) => {
                 mines[cell.row - 1][cell.col - 1].coordinates,
                 mines[cell.row + 1][cell.col].coordinates,
                 mines[cell.row + 1][cell.col - 1].coordinates,
-              )
-
+              );
             }
             break;
           default:
@@ -188,8 +180,7 @@ export const createTable = (rows, cols) => {
                 mines[cell.row + 1][cell.col].coordinates,
                 mines[cell.row + 1][cell.col - 1].coordinates,
                 mines[cell.row + 1][cell.col + 1].coordinates,
-              )
-
+              );
             } else if (cell.row === 8) {
               cell.neighbours.push(
                 mines[cell.row][cell.col - 1].coordinates,
@@ -197,8 +188,7 @@ export const createTable = (rows, cols) => {
                 mines[cell.row - 1][cell.col].coordinates,
                 mines[cell.row - 1][cell.col - 1].coordinates,
                 mines[cell.row - 1][cell.col + 1].coordinates,
-              )
-
+              );
             } else {
               cell.neighbours.push(
                 mines[cell.row][cell.col - 1].coordinates,
@@ -209,14 +199,10 @@ export const createTable = (rows, cols) => {
                 mines[cell.row + 1][cell.col].coordinates,
                 mines[cell.row + 1][cell.col - 1].coordinates,
                 mines[cell.row + 1][cell.col + 1].coordinates,
-              )
-
+              );
             }
         }
-      }),
-    )
+      }));
 
-  //////////////
-
-  return mines
-}
+  return mines;
+};
