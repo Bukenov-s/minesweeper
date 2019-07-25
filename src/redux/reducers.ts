@@ -10,7 +10,6 @@ const INITIAL_STATE: IState = {
   mines: createTable(9, 9),
   bombs: 9,
   cells_closed: 81,
-  detected: {},
   timer: {
     is_running: false,
     is_reset: false,

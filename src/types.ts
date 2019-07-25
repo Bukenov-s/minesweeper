@@ -23,15 +23,6 @@ export interface IState {
   mines: any;
   bombs: number;
   cells_closed: number;
-  detected: {
-    [row: number]: {
-      [cell: number]: {
-        row: number;
-        cell: number;
-        has_bomb: boolean;
-      };
-    };
-  } | {};
   timer: {
     is_running: boolean;
     is_reset: boolean;
