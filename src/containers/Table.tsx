@@ -22,33 +22,33 @@ const Table: FC<Props> = ({
   openCell,
   toggleAsBomb,
 }) => (
-    <div className="table">
-      {Object.keys(mines)
-        .map(arr => Object.values(mines[arr]).map(({
-          id,
-          row,
-          col,
-          has_bomb,
-          bombs_around,
-          open,
-          flagged,
-        }: any) => (
-            <Cell
-              key={id}
-              id={id}
-              row={row}
-              col={col}
-              has_bomb={has_bomb}
-              bombs_around={bombs_around}
-              open={open}
-              flagged={flagged}
-              openCell={openCell}
-              toggleAsBomb={toggleAsBomb}
-              game_over={game_over}
-            />
-          )))}
-    </div>
-  );
+  <div className="table">
+    {Object.keys(mines)
+      .map(arr => Object.values(mines[arr]).map(({
+        id,
+        row,
+        col,
+        has_bomb,
+        bombs_around,
+        open,
+        flagged,
+      }: any) => (
+        <Cell
+          key={id}
+          id={id}
+          row={row}
+          col={col}
+          has_bomb={has_bomb}
+          bombs_around={bombs_around}
+          open={open}
+          flagged={flagged}
+          openCell={openCell}
+          toggleAsBomb={toggleAsBomb}
+          game_over={game_over}
+        />
+      )))}
+  </div>
+);
 
 export default connect(
   mapStateToProps,
