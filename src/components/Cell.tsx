@@ -15,7 +15,7 @@ interface IProps {
   bombs_around: number;
   game_over: boolean;
   openCell: (row: number, col: number) => any;
-  toggleAsBomb: (row: number, col: number) => any;
+  toggleAsBomb: (row: number, col: number, has_bomb: boolean) => any;
 }
 
 const Cell: FC<IProps> = memo(({

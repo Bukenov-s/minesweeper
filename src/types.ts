@@ -22,13 +22,13 @@ export interface IState {
   difficulty: 'easy' | 'normal' | 'hard';
   mines: any;
   bombs: number;
-  cells_count: number;
+  cells_closed: number;
   detected: {
     [row: number]: {
       [cell: number]: {
         row: number;
         cell: number;
-        // has_bomb: boolean;
+        has_bomb: boolean;
       };
     };
   } | {};

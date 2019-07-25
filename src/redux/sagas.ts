@@ -9,7 +9,7 @@ import * as TYPES from './types';
 import * as actionCreators from './actions';
 
 const getMines = state => state.minesweeper.mines;
-const getCellsCount = state => state.minesweeper.cells_count;
+const getCellsClosed = state => state.minesweeper.cells_closed;
 
 // recursive saga
 function* openCellRecursive(row, col) {
@@ -39,10 +39,10 @@ function* openCellRecursive(row, col) {
 
 function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>) {
   const mines = yield select(getMines);
-  const cells_count = yield select(getCellsCount);
+  const cells_closed = yield select(getCellsClosed);
   const this_cell = mines[row][col];
 
-  if (cells_count === 81) {
+  if (cells_closed === 81) {
     yield put(actionCreators.startTimer());
   }
   // stop game once app rans into cell with bomb
@@ -55,15 +55,22 @@ function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>)
 
   // recursion starts
   yield call(openCellRecursive, row, col);
+
+  if (cells_closed === 10) {
+    yield put(actionCreators.stopTimer());
+    yield put(actionCreators.stopGame());
+  }
+  console.log('open cell saga ends. cells_closed is', cells_closed);
 }
 
 function* toggleCellSaga({ row, col, has_bomb }: ReturnType<typeof actionCreators.toggleAsBomb>) {
   const mines = yield select(getMines);
   const this_cell = mines[row][col];
-
+  /* eslint-disable */
   this_cell.flagged
     ? yield put(actionCreators.removeFromDetected(row, col, has_bomb))
     : yield put(actionCreators.addToDetected(row, col, has_bomb));
+  /* eslint-enable */
 }
 
 function* flow() {

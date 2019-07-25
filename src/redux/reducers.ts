@@ -9,7 +9,7 @@ const INITIAL_STATE: IState = {
   difficulty: 'easy',
   mines: createTable(9, 9),
   bombs: 9,
-  cells_count: 81,
+  cells_closed: 81,
   detected: {},
   timer: {
     is_running: false,
@@ -26,7 +26,7 @@ const startGame: Handler<IState, typeof actionCreators.startGame> = state => ({
   ...state,
   mines: createTable(9, 9),
   game_over: false,
-  cells_count: 81,
+  cells_closed: 81,
   timer: {
     is_reset: true,
     is_running: false
@@ -43,7 +43,7 @@ const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
   return {
     ...state,
     mines: updatedMines,
-    cells_count: state.cells_count - 1,
+    cells_closed: state.cells_closed - 1,
   };
 };
 
