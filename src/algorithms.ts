@@ -1,5 +1,4 @@
-const uuidv1 = require('uuid/v1');
-
+import { generateID } from '~/utils/generateID';
 // 1. generate object of row objects of cell objects
 // 2. generate random indexes to assign bombs to cells
 // 3. count bombs
@@ -14,7 +13,7 @@ export const createTable = (rows, cols) => {
     for (let j = 0; j < cols; j++) {
       mines[i][j] = {};
       mines[i][j] = {
-        id: uuidv1(),
+        id: generateID(i, j),
         row: i,
         col: j,
         coordinates: { row: i, col: j },
