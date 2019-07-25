@@ -1,8 +1,8 @@
 import * as TYPES from './types';
 import { IState, Handler } from '~/types';
 import * as actionCreators from '~/redux/actions';
-import { createReducer } from 'reduxsauce';
-import { createTable } from '~/utils/algorithms';
+import { createReducer } from '~/utils/createReducer';
+import { createTable } from '~/algorithms';
 
 const INITIAL_STATE: IState = {
   game_over: false,
