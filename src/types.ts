@@ -22,7 +22,16 @@ export interface IState {
   difficulty: 'easy' | 'normal' | 'hard';
   mines: any;
   bombs: number;
+  bombs_counter: number;
   cells_closed: number;
+  flagged_cells: {
+    [row: number]: {
+      [cell: number]: {
+        row: number;
+        col: number;
+      };
+    };
+  } | {[row: number]: {}};
   timer: {
     is_running: boolean;
     is_reset: boolean;

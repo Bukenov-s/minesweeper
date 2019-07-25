@@ -5,3 +5,5 @@ export const SET_CELL_OPEN = 'SET_CELL_OPEN';
 export const TOGGLE_AS_BOMB = 'TOGGLE_AS_BOMB';
 export const START_TIMER = 'START_TIMER';
 export const STOP_TIMER = 'STOP_TIMER';
+export const ADD_TO_FLAGGED = 'ADD_TO_FLAGGED';
+export const REMOVE_FROM_FLAGGED = 'REMOVE_FROM_FLAGGED';

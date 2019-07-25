@@ -9,7 +9,19 @@ const INITIAL_STATE: IState = {
   difficulty: 'easy',
   mines: createTable(9, 9),
   bombs: 9,
+  bombs_counter: 9,
   cells_closed: 81,
+  flagged_cells: {
+    0: {},
+    1: {},
+    2: {},
+    3: {},
+    4: {},
+    5: {},
+    6: {},
+    7: {},
+    8: {},
+  },
   timer: {
     is_running: false,
     is_reset: false,
@@ -25,7 +37,19 @@ const startGame: Handler<IState, typeof actionCreators.startGame> = state => ({
   ...state,
   mines: createTable(9, 9),
   game_over: false,
+  bombs_counter: 9,
   cells_closed: 81,
+  flagged_cells: {
+    0: {},
+    1: {},
+    2: {},
+    3: {},
+    4: {},
+    5: {},
+    6: {},
+    7: {},
+    8: {},
+  },
   timer: {
     is_reset: true,
     is_running: false
@@ -62,12 +86,29 @@ const stopTimer: Handler<IState, typeof actionCreators.startTimer> = state => ({
   }
 });
 
-const toggleAsBomb: Handler<IState, typeof actionCreators.toggleAsBomb> = (state, { row, col }) => {
+const addToFlagged: Handler<IState, typeof actionCreators.addToFlagged> = (state, { row, col }) => {
   const updated_mines = { ...state.mines };
-  updated_mines[row][col].flagged = !updated_mines[row][col].flagged;
+  const updated_flagged_cells = { ...state.flagged_cells };
+  updated_mines[row][col].flagged = true;
+  updated_flagged_cells[row][col] = { row, col };
   return {
     ...state,
     mines: updated_mines,
+    flagged_cells: updated_flagged_cells,
+    bombs_counter: state.bombs_counter - 1,
+  };
+};
+
+const removeFromFlagged: Handler<IState, typeof actionCreators.removeFromFlagged> = (state, { row, col }) => {
+  const updated_mines = { ...state.mines };
+  const updated_flagged_cells = { ...state.flagged_cells };
+  updated_mines[row][col].flagged = false;
+  delete updated_flagged_cells[row][col];
+  return {
+    ...state,
+    mines: updated_mines,
+    flagged_cells: updated_flagged_cells,
+    bombs_counter: state.bombs_counter + 1,
   };
 };
 
@@ -77,7 +118,9 @@ const HANDLERS = {
   [TYPES.SET_CELL_OPEN]: setCellOpen,
   [TYPES.START_TIMER]: startTimer,
   [TYPES.STOP_TIMER]: stopTimer,
-  [TYPES.TOGGLE_AS_BOMB]: toggleAsBomb,
+  // [TYPES.TOGGLE_AS_BOMB]: toggleAsBomb,
+  [TYPES.ADD_TO_FLAGGED]: addToFlagged,
+  [TYPES.REMOVE_FROM_FLAGGED]: removeFromFlagged,
 };
 
 export default createReducer<IState, any>(INITIAL_STATE, HANDLERS);

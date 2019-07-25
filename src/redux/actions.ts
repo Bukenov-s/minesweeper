@@ -27,6 +27,18 @@ export const toggleAsBomb = (row: number, col: number, has_bomb: boolean) => ({
   has_bomb,
 });
 
+export const addToFlagged = (row: number, col: number) => ({
+  type: TYPES.ADD_TO_FLAGGED,
+  row,
+  col,
+});
+
+export const removeFromFlagged = (row: number, col: number) => ({
+  type: TYPES.REMOVE_FROM_FLAGGED,
+  row,
+  col,
+});
+
 export const startTimer = () => ({
   type: TYPES.START_TIMER,
 });

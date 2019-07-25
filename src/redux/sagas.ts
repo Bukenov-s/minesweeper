@@ -65,8 +65,19 @@ function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>)
   console.log('open cell saga ends. cells_closed is', cells_closed);
 }
 
+function* toggleAsBomb({ row, col }: ReturnType<typeof actionCreators.toggleAsBomb>) {
+  const mines = yield select(getMines);
+  const this_cell = mines[row][col];
+  /* eslint-disable */
+  this_cell.flagged
+    ? yield put(actionCreators.removeFromFlagged(row, col))
+    : yield put(actionCreators.addToFlagged(row, col))
+  /* eslint-enable */
+}
+
 function* flow() {
   yield takeLatest(TYPES.OPEN_CELL, openCellSaga);
+  yield takeLatest(TYPES.TOGGLE_AS_BOMB, toggleAsBomb);
 }
 
 export default function* rootSaga() {

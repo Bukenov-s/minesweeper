@@ -5,7 +5,7 @@ import { Timer } from '~/components/Timer';
 
 const mapStateToProps = ({ minesweeper }) => ({
   game_over: minesweeper.game_over,
-  bombs: minesweeper.bombs,
+  bombs_counter: minesweeper.bombs_counter,
   timer: minesweeper.timer,
 });
 
@@ -17,7 +17,7 @@ type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
 
 const Panel: FC<Props> = ({
   game_over,
-  bombs,
+  bombs_counter,
   timer,
   startGame
 }) => {
@@ -37,7 +37,7 @@ const Panel: FC<Props> = ({
         restart
       </button>
       <span className="spacer" />
-      <div>{bombs}</div>
+      <div>{bombs_counter}</div>
     </div>
   );
 };
