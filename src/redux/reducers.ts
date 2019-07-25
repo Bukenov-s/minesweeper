@@ -63,28 +63,12 @@ const stopTimer: Handler<IState, typeof actionCreators.startTimer> = state => ({
   }
 });
 
-const addToDetected: Handler<IState, typeof actionCreators.addToDetected> = (state, { row, col, has_bomb }) => {
+const toggleAsBomb: Handler<IState, typeof actionCreators.toggleAsBomb> = (state, { row, col }) => {
   const updated_mines = { ...state.mines };
-  const updated_detected = { ...state.detected };
-  updated_mines[row][col].flagged = true;
-  updated_detected[row] = { ...state.detected[row] };
-  updated_detected[row][col] = { row, col, has_bomb };
+  updated_mines[row][col].flagged = !updated_mines[row][col].flagged;
   return {
     ...state,
     mines: updated_mines,
-    detected: updated_detected
-  };
-};
-
-const removeFromDetected: Handler<IState, typeof actionCreators.removeFromDetected> = (state, { row, col }) => {
-  const updated_mines = { ...state.mines };
-  const updated_detected = { ...state.detected };
-  updated_mines[row][col].flagged = false;
-  delete updated_detected[row][col];
-  return {
-    ...state,
-    mines: updated_mines,
-    detected: updated_detected
   };
 };
 
@@ -94,8 +78,7 @@ const HANDLERS = {
   [TYPES.SET_CELL_OPEN]: setCellOpen,
   [TYPES.START_TIMER]: startTimer,
   [TYPES.STOP_TIMER]: stopTimer,
-  [TYPES.ADD_TO_DETECTED]: addToDetected,
-  [TYPES.REMOVE_FROM_DETECTED]: removeFromDetected,
+  [TYPES.TOGGLE_AS_BOMB]: toggleAsBomb,
 };
 
 export default createReducer<IState, any>(INITIAL_STATE, HANDLERS);

@@ -27,20 +27,6 @@ export const toggleAsBomb = (row: number, col: number, has_bomb: boolean) => ({
   has_bomb,
 });
 
-export const addToDetected = (row: number, col: number, has_bomb: boolean) => ({
-  type: TYPES.ADD_TO_DETECTED,
-  row,
-  col,
-  has_bomb
-});
-
-export const removeFromDetected = (row: number, col: number, has_bomb: boolean) => ({
-  type: TYPES.REMOVE_FROM_DETECTED,
-  row,
-  col,
-  has_bomb
-});
-
 export const startTimer = () => ({
   type: TYPES.START_TIMER,
 });
