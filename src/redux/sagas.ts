@@ -10,6 +10,7 @@ import * as actionCreators from './actions';
 
 const getMines = state => state.minesweeper.mines;
 const getCellsClosed = state => state.minesweeper.cells_closed;
+const getBombs = state => state.minesweeper.bombs;
 
 // recursive saga
 function* openCellRecursive(row, col) {
@@ -40,6 +41,7 @@ function* openCellRecursive(row, col) {
 function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>) {
   const mines = yield select(getMines);
   const cells_closed = yield select(getCellsClosed);
+  const bombs = yield select(getBombs);
   const this_cell = mines[row][col];
 
   if (cells_closed === 81) {
@@ -56,7 +58,7 @@ function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>)
   // recursion starts
   yield call(openCellRecursive, row, col);
 
-  if (cells_closed === 10) {
+  if (cells_closed === bombs + 1) {
     yield put(actionCreators.stopTimer());
     yield put(actionCreators.stopGame());
   }
