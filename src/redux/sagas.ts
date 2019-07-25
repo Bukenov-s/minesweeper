@@ -8,6 +8,7 @@ import {
 import * as TYPES from './types';
 import * as actionCreators from './actions';
 
+// Selectors
 const getMines = state => state.minesweeper.mines;
 const getCellsClosed = state => state.minesweeper.cells_closed;
 const getBombs = state => state.minesweeper.bombs;

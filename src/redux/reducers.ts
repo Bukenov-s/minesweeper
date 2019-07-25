@@ -88,7 +88,10 @@ const stopTimer: Handler<IState, typeof actionCreators.startTimer> = state => ({
   }
 });
 
-const addToFlagged: Handler<IState, typeof actionCreators.addToFlagged> = (state, { row, col }) => {
+const addToFlagged: Handler<IState, typeof actionCreators.addToFlagged> = (
+  state,
+  { row, col }
+) => {
   const updated_mines = { ...state.mines };
   const updated_flagged_cells = { ...state.flagged_cells };
   updated_mines[row][col].flagged = true;
@@ -101,7 +104,10 @@ const addToFlagged: Handler<IState, typeof actionCreators.addToFlagged> = (state
   };
 };
 
-const removeFromFlagged: Handler<IState, typeof actionCreators.removeFromFlagged> = (state, { row, col }) => {
+const removeFromFlagged: Handler<IState, typeof actionCreators.removeFromFlagged> = (
+  state,
+  { row, col }
+) => {
   const updated_mines = { ...state.mines };
   const updated_flagged_cells = { ...state.flagged_cells };
   updated_mines[row][col].flagged = false;
@@ -136,4 +142,4 @@ const HANDLERS = {
   [TYPES.SET_LOSS_RESULT]: setLossResult,
 };
 
-export default createReducer<IState, any>(INITIAL_STATE, HANDLERS);
+export default createReducer(INITIAL_STATE, HANDLERS);

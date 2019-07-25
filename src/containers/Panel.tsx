@@ -4,7 +4,6 @@ import * as actionCreators from '~/redux/actions';
 import { Timer } from '~/components/Timer';
 
 const mapStateToProps = ({ minesweeper }) => ({
-  game_over: minesweeper.game_over,
   bombs_counter: minesweeper.bombs_counter,
   timer: minesweeper.timer,
 });
@@ -16,7 +15,6 @@ const mapDispatchToProps = {
 type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
 
 const Panel: FC<Props> = ({
-  game_over,
   bombs_counter,
   timer,
   startGame
