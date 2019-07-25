@@ -14,6 +14,7 @@ interface IProps {
   flagged: boolean;
   bombs_around: number;
   game_over: boolean;
+  result: 'unknown' | 'win' | 'loss';
   openCell: (row: number, col: number) => void;
   toggleAsBomb: (row: number, col: number, has_bomb: boolean) => void;
 }
@@ -27,6 +28,7 @@ const Cell: FC<IProps> = memo(({
   flagged,
   bombs_around,
   game_over,
+  result,
   openCell,
   toggleAsBomb,
 }) => {
@@ -50,7 +52,7 @@ const Cell: FC<IProps> = memo(({
   return (
     <button
       className={
-        `cell ${flagged ? 'flagged' : ''} ${open ? 'open' : ''} ${(game_over && !open) ? 'exploded' : ''}`
+        `cell ${flagged || result === 'win' ? 'flagged' : ''} ${open ? 'open' : ''} ${(result === 'loss' && !open) ? 'exploded' : ''}`
       }
       onClick={handleClick}
       onContextMenu={handleRightClick}

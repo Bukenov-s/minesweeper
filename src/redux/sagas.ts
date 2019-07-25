@@ -64,6 +64,7 @@ function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>)
     yield put(actionCreators.stopTimer());
     yield put(actionCreators.stopGame());
     yield put(actionCreators.setWinResult());
+    alert('Congratulations, you won!');
   }
   console.log('open cell saga ends. cells_closed is', cells_closed);
 }
