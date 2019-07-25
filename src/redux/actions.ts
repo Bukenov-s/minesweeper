@@ -46,3 +46,11 @@ export const startTimer = () => ({
 export const stopTimer = () => ({
   type: TYPES.STOP_TIMER,
 });
+
+export const setWinResult = () => ({
+  type: TYPES.SET_WIN_RESULT
+});
+
+export const setLossResult = () => ({
+  type: TYPES.SET_LOSS_RESULT
+});

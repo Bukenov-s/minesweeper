@@ -7,3 +7,5 @@ export const START_TIMER = 'START_TIMER';
 export const STOP_TIMER = 'STOP_TIMER';
 export const ADD_TO_FLAGGED = 'ADD_TO_FLAGGED';
 export const REMOVE_FROM_FLAGGED = 'REMOVE_FROM_FLAGGED';
+export const SET_WIN_RESULT = 'SET_WIN_RESULT';
+export const SET_LOSS_RESULT = 'SET_LOSS_RESULT';

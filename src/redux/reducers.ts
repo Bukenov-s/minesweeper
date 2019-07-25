@@ -26,6 +26,7 @@ const INITIAL_STATE: IState = {
     is_running: false,
     is_reset: false,
   },
+  result: 'unknown'
 };
 
 const stopGame: Handler<IState, typeof actionCreators.stopGame> = state => ({
@@ -53,7 +54,8 @@ const startGame: Handler<IState, typeof actionCreators.startGame> = state => ({
   timer: {
     is_reset: true,
     is_running: false
-  }
+  },
+  result: 'unknown'
 });
 
 const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
@@ -112,15 +114,26 @@ const removeFromFlagged: Handler<IState, typeof actionCreators.removeFromFlagged
   };
 };
 
+const setWinResult: Handler<IState, typeof actionCreators.setWinResult> = state => ({
+  ...state,
+  result: 'win',
+});
+
+const setLossResult: Handler<IState, typeof actionCreators.setLossResult> = state => ({
+  ...state,
+  result: 'loss',
+});
+
 const HANDLERS = {
   [TYPES.STOP_GAME]: stopGame,
   [TYPES.START_GAME]: startGame,
   [TYPES.SET_CELL_OPEN]: setCellOpen,
   [TYPES.START_TIMER]: startTimer,
   [TYPES.STOP_TIMER]: stopTimer,
-  // [TYPES.TOGGLE_AS_BOMB]: toggleAsBomb,
   [TYPES.ADD_TO_FLAGGED]: addToFlagged,
   [TYPES.REMOVE_FROM_FLAGGED]: removeFromFlagged,
+  [TYPES.SET_WIN_RESULT]: setWinResult,
+  [TYPES.SET_LOSS_RESULT]: setLossResult,
 };
 
 export default createReducer<IState, any>(INITIAL_STATE, HANDLERS);

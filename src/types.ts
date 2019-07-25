@@ -36,6 +36,7 @@ export interface IState {
     is_running: boolean;
     is_reset: boolean;
   };
+  result: 'win' | 'loss' | 'unknown';
 }
 
 export type Handler<P, T> = (

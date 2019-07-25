@@ -52,6 +52,7 @@ function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>)
   if (this_cell.has_bomb) {
     yield put(actionCreators.stopTimer());
     yield put(actionCreators.stopGame());
+    yield put(actionCreators.setLossResult());
     return;
   }
 
@@ -61,6 +62,7 @@ function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>)
   if (cells_closed === bombs + 1) {
     yield put(actionCreators.stopTimer());
     yield put(actionCreators.stopGame());
+    yield put(actionCreators.setWinResult());
   }
   console.log('open cell saga ends. cells_closed is', cells_closed);
 }
