@@ -32,7 +32,19 @@
   outline: none;
   padding: 5px 10px;
   border: 1px solid black;
-  background: none;
+  background-color: #fff;
+  cursor: pointer;
+  transition: transform 0.5s ease,
+              background-color 0.5s ease;
+  
+}
+
+.restart:hover {
+  background-color: #dbdbdb;
+}
+
+.restart:active {
+  transform: scale(0.9, 0.9);
 }
 
 .row {
