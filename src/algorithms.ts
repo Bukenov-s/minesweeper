@@ -3,6 +3,38 @@ import { generateID } from '~/utils/generateID';
 // 2. generate random indexes to assign bombs to cells
 // 3. count bombs
 
+const setCellPosition = (row: number, col: number) => {
+  let position = '';
+  if (col === 0) {
+    position = 'leftmost';
+  }
+  if (col === 8) {
+    position = 'rightmost';
+  }
+  if (row === 0) {
+    position = 'uppermost';
+  }
+  if (row === 8) {
+    position = 'lowermost';
+  }
+  if (row === 0 && col === 0) {
+    position = 'uppermost leftmost';
+  }
+  if (row === 0 && col === 8) {
+    position = 'uppermost rightmost';
+  }
+  if (row === 8 && col === 0) {
+    position = 'lowermost leftmost';
+  }
+  if (row === 8 && col === 8) {
+    position = 'lowermost rightmost';
+  }
+  if ((row !== 0 && row !== 8) && (col !== 0 && col !== 8)) {
+    position = 'center';
+  }
+  return position;
+}
+
 // generates objects of objects
 // with indexes as keys and objects as values
 export const createTable = (rows, cols) => {
@@ -16,6 +48,7 @@ export const createTable = (rows, cols) => {
         id: generateID(i, j),
         row: i,
         col: j,
+        position: setCellPosition(i, j),
         coordinates: { row: i, col: j },
         has_bomb: false,
         bombs_around: 0,
