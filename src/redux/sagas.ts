@@ -14,7 +14,7 @@ const getCellsClosed = state => state.minesweeper.cells_closed;
 const getBombs = state => state.minesweeper.bombs;
 
 // recursive saga
-function* openCellRecursive(row, col) {
+function* openCellRecursive(row: number, col: number) {
   const mines = yield select(getMines);
   const this_cell = mines[row][col];
 
