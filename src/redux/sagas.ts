@@ -26,7 +26,7 @@ function* openCellRecursive(row: number, col: number) {
     for (let i = 0; i < this_cell.neighbours.length; i++) {
       const { row: this_row, col: this_col } = this_cell.neighbours[i];
       const neighbour_cell = mines[this_row][this_col];
-      // recursion should happen only if cell is empty
+
       if (neighbour_cell.bombs_around === 0 && !neighbour_cell.open) {
         yield call(openCellRecursive, this_row, this_col);
       } else if (neighbour_cell.bombs_around !== 0 && !neighbour_cell.open) {
@@ -64,9 +64,7 @@ function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>)
     yield put(actionCreators.stopTimer());
     yield put(actionCreators.stopGame());
     yield put(actionCreators.setWinResult());
-    alert('Congratulations, you won!');
   }
-  console.log('open cell saga ends. cells_closed is', cells_closed);
 }
 
 function* toggleAsBomb({ row, col }: ReturnType<typeof actionCreators.toggleAsBomb>) {

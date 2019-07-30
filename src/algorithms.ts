@@ -33,7 +33,7 @@ const setCellPosition = (row: number, col: number) => {
     position = 'center';
   }
   return position;
-}
+};
 
 // generates objects of objects
 // with indexes as keys and objects as values
