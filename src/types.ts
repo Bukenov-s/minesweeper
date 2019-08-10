@@ -19,7 +19,7 @@ export interface Mines {
 
 export interface IState {
   game_over: boolean;
-  difficulty: 'easy' | 'normal' | 'hard';
+  difficulty: 'easy' | 'normal' | 'hard' | 'unset';
   mines: any;
   bombs: number;
   bombs_counter: number;
@@ -31,7 +31,7 @@ export interface IState {
         col: number;
       };
     };
-  } | {[row: number]: {}};
+  } | { [row: number]: {} };
   timer: {
     is_running: boolean;
     is_reset: boolean;

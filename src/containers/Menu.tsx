@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
+import * as actionCreators from '~/redux/actions';
 
-const mapStateToProps = (state) => ({
-
+const mapStateToProps = ({ minesweeper }) => ({
+  // fill this later
 });
 
 const mapDispatchToProps = {
-
+  startNewGame: actionCreators.startNewGame,
 };
 
 interface IProps {
@@ -15,7 +16,17 @@ interface IProps {
 
 const Menu: FC<{}> = () => {
   return (
-    <h1>Menu</h1>
+    <div
+      style={{
+        width: '243px',
+        height: '243px',
+        backgroundColor: 'pink',
+      }}
+    >
+      <button>easy</button>
+      <button>normal</button>
+      <button>hard</button>
+    </div>
   )
 }
 
