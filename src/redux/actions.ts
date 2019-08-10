@@ -8,6 +8,30 @@ export const startGame = () => ({
   type: TYPES.START_GAME,
 });
 
+export const startNewGame = (rows: number, cols: number) => ({
+  type: TYPES.START_NEW_GAME,
+  rows,
+  cols,
+});
+
+export const startEasyGame = (rows: number, cols: number) => ({
+  type: TYPES.START_EASY_GAME,
+  rows,
+  cols,
+});
+
+export const startNormalGame = (rows: number, cols: number) => ({
+  type: TYPES.START_NORMAL_GAME,
+  rows,
+  cols,
+});
+
+export const startHardGame = (rows: number, cols: number) => ({
+  type: TYPES.START_HARD_GAME,
+  rows,
+  cols,
+});
+
 export const openCell = (row: number, col: number) => ({
   type: TYPES.OPEN_CELL,
   row,

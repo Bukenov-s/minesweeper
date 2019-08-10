@@ -58,6 +58,27 @@ const startGame: Handler<IState, typeof actionCreators.startGame> = state => ({
   result: 'unknown'
 });
 
+const startEasyGameHandler: Handler<IState, typeof actionCreators.startEasyGame> = (
+  state,
+  { rows, cols },
+) => ({
+  ...state,
+});
+
+const startNormalGameHandler: Handler<IState, typeof actionCreators.startNormalGame> = (
+  state,
+  { rows, cols },
+) => ({
+  ...state,
+});
+
+const startHardGameHandler: Handler<IState, typeof actionCreators.startHardGame> = (
+  state,
+  { rows, cols },
+) => ({
+  ...state,
+});
+
 const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
   state,
   { row, col },
@@ -133,6 +154,9 @@ const setLossResult: Handler<IState, typeof actionCreators.setLossResult> = stat
 const HANDLERS = {
   [TYPES.STOP_GAME]: stopGame,
   [TYPES.START_GAME]: startGame,
+  [TYPES.START_EASY_GAME]: startEasyGameHandler,
+  [TYPES.START_NORMAL_GAME]: startNormalGameHandler,
+  [TYPES.START_HARD_GAME]: startHardGameHandler,
   [TYPES.SET_CELL_OPEN]: setCellOpen,
   [TYPES.START_TIMER]: startTimer,
   [TYPES.STOP_TIMER]: stopTimer,
