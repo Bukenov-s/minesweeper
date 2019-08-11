@@ -37,7 +37,7 @@ const setCellPosition = (row: number, col: number) => {
 
 // generates objects of objects
 // with indexes as keys and objects as values
-export const createTable = (rows, cols) => {
+export const createTable = (rows: number, cols: number, bombs: number) => {
   // generate initial empty table
   const mines = {};
   for (let i = 0; i < rows; i++) {
