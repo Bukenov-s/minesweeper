@@ -1,20 +1,12 @@
 import React, { FC } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getDifficulty } from '~/redux/selectors';
 import * as actionCreators from '~/redux/actions';
 
-const mapStateToProps = ({ minesweeper }) => ({
-  // fill this later
-});
+const Menu: FC<any> = () => {
+  const difficulty = useSelector(getDifficulty);
+  const dispatch = useDispatch();
 
-const mapDispatchToProps = {
-  startNewGame: actionCreators.startNewGame,
-};
-
-interface IProps {
-
-}
-
-const Menu: FC<{}> = () => {
   return (
     <div
       style={{
@@ -23,14 +15,11 @@ const Menu: FC<{}> = () => {
         backgroundColor: 'pink',
       }}
     >
-      <button>easy</button>
-      <button>normal</button>
-      <button>hard</button>
+      <button onClick={() => dispatch(actionCreators.startEasyGame(9, 9))}>easy</button>
+      <button onClick={() => dispatch(actionCreators.startEasyGame(16, 16))}>normal</button>
+      <button onClick={() => dispatch(actionCreators.startEasyGame(30, 16))}>hard</button>
     </div>
   )
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Menu);
+export default Menu;

@@ -6,7 +6,7 @@ import { createTable } from '~/algorithms';
 
 const INITIAL_STATE: IState = {
   game_over: false,
-  difficulty: 'easy',
+  difficulty: 'unset',
   mines: createTable(9, 9),
   bombs: 9,
   bombs_counter: 9,
@@ -63,6 +63,9 @@ const startEasyGameHandler: Handler<IState, typeof actionCreators.startEasyGame>
   { rows, cols },
 ) => ({
   ...state,
+  difficulty: 'easy',
+  mines: createTable(rows, cols),
+  cells_closed: rows * cols,
 });
 
 const startNormalGameHandler: Handler<IState, typeof actionCreators.startNormalGame> = (
@@ -70,6 +73,9 @@ const startNormalGameHandler: Handler<IState, typeof actionCreators.startNormalG
   { rows, cols },
 ) => ({
   ...state,
+  difficulty: 'normal',
+  mines: createTable(rows, cols),
+  cells_closed: rows * cols,
 });
 
 const startHardGameHandler: Handler<IState, typeof actionCreators.startHardGame> = (
@@ -77,6 +83,9 @@ const startHardGameHandler: Handler<IState, typeof actionCreators.startHardGame>
   { rows, cols },
 ) => ({
   ...state,
+  difficulty: 'hard',
+  mines: createTable(rows, cols),
+  cells_closed: rows * cols,
 });
 
 const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (

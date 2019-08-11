@@ -15,8 +15,8 @@
 .table {
   display: flex;
   flex-wrap: wrap;
-  width: 243px;
-  height: 243px;
+  /* width: 243px;
+  height: 243px; */
 }
 
 .panel {

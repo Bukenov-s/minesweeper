@@ -1,26 +1,22 @@
 import { hot } from 'react-hot-loader/root';
-import React, { FC } from 'react';
-import { connect } from 'react-redux';
+import React, { FC, Fragment } from 'react';
+import { useSelector } from 'react-redux';
+import { getDifficulty } from './redux/selectors';
 import Table from '~/containers/Table';
 import Panel from '~/containers/Panel';
 import Menu from '~/containers/Menu';
 import * as actionCreators from './redux/actions';
 import './style.css';
 
-const mapStateToProps = (state) => ({
-  // fill this later
-});
+const App: FC<any> = ({ startNewGame }) => {
+  const difficulty = useSelector(getDifficulty);
 
-const mapDispatchToProps = {
-  // fill this later
+  return (
+    <div className="app">
+      {difficulty === 'unset' ? <Menu /> : <Fragment><Panel /><Table /></Fragment>}
+    </div>
+  );
 }
 
-const App: FC<{}> = () => (
-  <div className="app">
-    <Panel />
-    <Table />
-  </div>
-);
-
-
+// export default connect(mapStateToProps, mapDispatchToProps)(hot(module)(App));
 export default hot(App);
