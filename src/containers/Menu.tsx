@@ -15,11 +15,26 @@ const Menu: FC<any> = () => {
         backgroundColor: 'pink',
       }}
     >
-      <button onClick={() => dispatch(actionCreators.startEasyGame(9, 9))}>easy</button>
-      <button onClick={() => dispatch(actionCreators.startEasyGame(16, 16))}>normal</button>
-      <button onClick={() => dispatch(actionCreators.startEasyGame(30, 16))}>hard</button>
+      <button
+        onClick={() => dispatch(actionCreators.startEasyGame())}
+        type="button"
+      >
+        easy
+      </button>
+      <button
+        onClick={() => dispatch(actionCreators.startNormalGame())}
+        type="button"
+      >
+        normal
+      </button>
+      <button
+        onClick={() => dispatch(actionCreators.startHardGame())}
+        type="button"
+      >
+        hard
+      </button>
     </div>
-  )
-}
+  );
+};
 
 export default Menu;

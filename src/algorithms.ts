@@ -35,9 +35,31 @@ const setCellPosition = (row: number, col: number) => {
   return position;
 };
 
+const pickRandomUniqueIndexes = (rows: number, cols: number, bombs: number) => {
+  // generates an array of all possible indexes of cells
+  // for example '00' - means first row and first cell , '25' - means third row sixth cell
+
+  const indexes = [];
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      indexes.push(i + ' ' + j);
+    }
+  }
+
+  const random_indexes = [];
+  while (random_indexes.length < bombs) {
+    const randomNumber = Math.floor(Math.random() * (rows * cols));
+    const randomIndex = indexes[randomNumber];
+    if (random_indexes.indexOf(randomIndex) > -1) continue;
+    random_indexes.push(randomIndex);
+  }
+
+  return random_indexes;
+};
+
 // generates objects of objects
 // with indexes as keys and objects as values
-export const createTable = (rows, cols) => {
+export const createTable = (rows: number, cols: number, bombs: number) => {
   // generate initial empty table
   const mines = {};
   for (let i = 0; i < rows; i++) {
@@ -60,39 +82,17 @@ export const createTable = (rows, cols) => {
     }
   }
 
-  // generate random indexes to assign bombs later on
-  const pickRandomUniqueIndexes = () => {
-    // generates an array of all possible indexes of cells
-    // for example '00' - means first row and first cell , '25' - means third row sixth cell
-    const allPossibleIndexes = (function () {
-      const arr = [];
-      for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-          arr.push(i + '' + j);
-        }
-      }
-      return arr;
-    })();
-    const arr = [];
-    while (arr.length < 9) {
-      const randomNumber = Math.floor(Math.random() * 81);
-      const randomIndex = allPossibleIndexes[randomNumber];
-      if (arr.indexOf(randomIndex) > -1) continue;
-      arr.push(randomIndex);
-    }
-    return arr;
-  };
   // assigning bombs to cells and also counting bombs happens here
-  pickRandomUniqueIndexes().forEach(
+  pickRandomUniqueIndexes(rows, cols, bombs).forEach(
     (num) => {
-      const [row, col] = num.split('').map(str => +str);
+      const [row, col] = num.split(' ').map(str => +str);
       switch (col) {
-        case 0:
-          if (row === 0) {
+        case (cols - cols):
+          if (row === (rows - rows)) {
             mines[row][col + 1].bombs_around++;
             mines[row + 1][col].bombs_around++;
             mines[row + 1][col + 1].bombs_around++;
-          } else if (row === 8) {
+          } else if (row === (rows - 1)) {
             mines[row][col + 1].bombs_around++;
             mines[row - 1][col].bombs_around++;
             mines[row - 1][col + 1].bombs_around++;
@@ -104,12 +104,12 @@ export const createTable = (rows, cols) => {
             mines[row + 1][col + 1].bombs_around++;
           }
           break;
-        case 8:
-          if (row === 0) {
+        case (cols - 1):
+          if (row === (rows - rows)) {
             mines[row][col - 1].bombs_around++;
             mines[row + 1][col].bombs_around++;
             mines[row + 1][col - 1].bombs_around++;
-          } else if (row === 8) {
+          } else if (row === (rows - 1)) {
             mines[row][col - 1].bombs_around++;
             mines[row - 1][col].bombs_around++;
             mines[row - 1][col - 1].bombs_around++;
@@ -122,13 +122,13 @@ export const createTable = (rows, cols) => {
           }
           break;
         default:
-          if (row === 0) {
+          if (row === (rows - rows)) {
             mines[row][col - 1].bombs_around++;
             mines[row][col + 1].bombs_around++;
             mines[row + 1][col].bombs_around++;
             mines[row + 1][col - 1].bombs_around++;
             mines[row + 1][col + 1].bombs_around++;
-          } else if (row === 8) {
+          } else if (row === (rows - 1)) {
             mines[row][col - 1].bombs_around++;
             mines[row][col + 1].bombs_around++;
             mines[row - 1][col].bombs_around++;
@@ -158,14 +158,14 @@ export const createTable = (rows, cols) => {
           return;
         }
         switch (cell.col) {
-          case 0:
-            if (cell.row === 0) {
+          case (cols - cols):
+            if (cell.row === (rows - rows)) {
               cell.neighbours.push(
                 mines[cell.row][cell.col + 1].coordinates,
                 mines[cell.row + 1][cell.col].coordinates,
                 mines[cell.row + 1][cell.col + 1].coordinates,
               );
-            } else if (cell.row === 8) {
+            } else if (cell.row === (rows - 1)) {
               cell.neighbours.push(
                 mines[cell.row][cell.col + 1].coordinates,
                 mines[cell.row - 1][cell.col].coordinates,
@@ -181,14 +181,14 @@ export const createTable = (rows, cols) => {
               );
             }
             break;
-          case 8:
-            if (cell.row === 0) {
+          case (cols - 1):
+            if (cell.row === (rows - rows)) {
               cell.neighbours.push(
                 mines[cell.row][cell.col - 1].coordinates,
                 mines[cell.row + 1][cell.col].coordinates,
                 mines[cell.row + 1][cell.col - 1].coordinates,
               );
-            } else if (cell.row === 8) {
+            } else if (cell.row === (rows - 1)) {
               cell.neighbours.push(
                 mines[cell.row][cell.col - 1].coordinates,
                 mines[cell.row - 1][cell.col].coordinates,
@@ -205,7 +205,7 @@ export const createTable = (rows, cols) => {
             }
             break;
           default:
-            if (cell.row === 0) {
+            if (cell.row === (rows - rows)) {
               cell.neighbours.push(
                 mines[cell.row][cell.col - 1].coordinates,
                 mines[cell.row][cell.col + 1].coordinates,
@@ -213,7 +213,7 @@ export const createTable = (rows, cols) => {
                 mines[cell.row + 1][cell.col - 1].coordinates,
                 mines[cell.row + 1][cell.col + 1].coordinates,
               );
-            } else if (cell.row === 8) {
+            } else if (cell.row === (rows - 1)) {
               cell.neighbours.push(
                 mines[cell.row][cell.col - 1].coordinates,
                 mines[cell.row][cell.col + 1].coordinates,

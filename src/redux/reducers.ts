@@ -7,7 +7,7 @@ import { createTable } from '~/algorithms';
 const INITIAL_STATE: IState = {
   game_over: false,
   difficulty: 'unset',
-  mines: createTable(9, 9),
+  mines: createTable(9, 9, 9),
   bombs: 9,
   bombs_counter: 9,
   cells_closed: 81,
@@ -36,7 +36,7 @@ const stopGame: Handler<IState, typeof actionCreators.stopGame> = state => ({
 
 const startGame: Handler<IState, typeof actionCreators.startGame> = state => ({
   ...state,
-  mines: createTable(9, 9),
+  mines: createTable(9, 9, 9),
   game_over: false,
   bombs_counter: 9,
   cells_closed: 81,
@@ -58,34 +58,25 @@ const startGame: Handler<IState, typeof actionCreators.startGame> = state => ({
   result: 'unknown'
 });
 
-const startEasyGameHandler: Handler<IState, typeof actionCreators.startEasyGame> = (
-  state,
-  { rows, cols },
-) => ({
+const startEasyGameHandler: Handler<IState, typeof actionCreators.startEasyGame> = state => ({
   ...state,
   difficulty: 'easy',
-  mines: createTable(rows, cols),
-  cells_closed: rows * cols,
+  mines: createTable(9, 9, 9),
+  cells_closed: 9 * 9,
 });
 
-const startNormalGameHandler: Handler<IState, typeof actionCreators.startNormalGame> = (
-  state,
-  { rows, cols },
-) => ({
+const startNormalGameHandler: Handler<IState, typeof actionCreators.startNormalGame> = state => ({
   ...state,
   difficulty: 'normal',
-  mines: createTable(rows, cols),
-  cells_closed: rows * cols,
+  mines: createTable(16, 16, 40),
+  cells_closed: 16 * 16,
 });
 
-const startHardGameHandler: Handler<IState, typeof actionCreators.startHardGame> = (
-  state,
-  { rows, cols },
-) => ({
+const startHardGameHandler: Handler<IState, typeof actionCreators.startHardGame> = state => ({
   ...state,
   difficulty: 'hard',
-  mines: createTable(rows, cols),
-  cells_closed: rows * cols,
+  mines: createTable(16, 30, 99),
+  cells_closed: 16 * 30,
 });
 
 const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
