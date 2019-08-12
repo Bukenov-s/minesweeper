@@ -8,28 +8,25 @@ export const startGame = () => ({
   type: TYPES.START_GAME,
 });
 
-export const startNewGame = (rows: number, cols: number) => ({
+export const resetGame = (difficulty: string) => ({
+  type: TYPES.RESET_GAME,
+  difficulty,
+});
+
+export const startNewGame = () => ({
   type: TYPES.START_NEW_GAME,
-  rows,
-  cols,
 });
 
-export const startEasyGame = (rows: number, cols: number) => ({
+export const startEasyGame = () => ({
   type: TYPES.START_EASY_GAME,
-  rows,
-  cols,
 });
 
-export const startNormalGame = (rows: number, cols: number) => ({
+export const startNormalGame = () => ({
   type: TYPES.START_NORMAL_GAME,
-  rows,
-  cols,
 });
 
-export const startHardGame = (rows: number, cols: number) => ({
+export const startHardGame = () => ({
   type: TYPES.START_HARD_GAME,
-  rows,
-  cols,
 });
 
 export const openCell = (row: number, col: number) => ({

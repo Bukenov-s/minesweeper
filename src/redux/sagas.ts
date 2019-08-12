@@ -13,19 +13,9 @@ const getMines = state => state.minesweeper.mines;
 const getCellsClosed = state => state.minesweeper.cells_closed;
 const getBombs = state => state.minesweeper.bombs;
 
-function* starteNewGameSaga({ rows, cols }: ReturnType<typeof actionCreators.startNewGame>) {
-  if (rows === 9 && cols === 9) {
-    return yield put(actionCreators.startEasyGame(rows, cols));
-  }
-
-  if (rows === 16 && cols === 16) {
-    return yield put(actionCreators.startNormalGame(rows, cols));
-  }
-
-  if (rows === 16 && cols === 30) {
-    return yield put(actionCreators.startHardGame(rows, cols));
-  }
-}
+function* resetGameSaga({ difficulty }: ReturnType<typeof actionCreators.resetGame>){
+  // do stuff
+};
 
 // recursive saga
 function* openCellRecursive(row: number, col: number) {
@@ -92,7 +82,7 @@ function* toggleAsBomb({ row, col }: ReturnType<typeof actionCreators.toggleAsBo
 }
 
 function* flow() {
-  yield takeLatest(TYPES.START_NEW_GAME, starteNewGameSaga);
+  yield takeLatest(TYPES.RESET_GAME, resetGameSaga);
   yield takeLatest(TYPES.OPEN_CELL, openCellSaga);
   yield takeLatest(TYPES.TOGGLE_AS_BOMB, toggleAsBomb);
 }

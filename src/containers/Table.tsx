@@ -26,16 +26,16 @@ const Table: FC<Props> = ({
   openCell,
   toggleAsBomb,
 }) => {
-  const getWidthAndHeight = useCallback((difficulty) => {
-    if (difficulty === 'easy') {
+  const getWidthAndHeight = useCallback((arg) => {
+    if (arg === 'easy') {
       return { width: '243px', height: '243px' };
     }
 
-    if (difficulty === 'normal') {
+    if (arg === 'normal') {
       return { width: '432px', height: '432px' };
     }
 
-    if (difficulty === 'hard') {
+    if (arg === 'hard') {
       return { width: '810px', height: '432px' };
     }
   }, [difficulty]);
@@ -56,25 +56,25 @@ const Table: FC<Props> = ({
             open,
             flagged,
           }: any) => (
-              <Cell
-                key={id}
-                id={id}
-                row={row}
-                col={col}
-                has_bomb={has_bomb}
-                bombs_around={bombs_around}
-                open={open}
-                flagged={flagged}
-                openCell={openCell}
-                toggleAsBomb={toggleAsBomb}
-                game_over={game_over}
-                result={result}
-              />
-            )))
+            <Cell
+              key={id}
+              id={id}
+              row={row}
+              col={col}
+              has_bomb={has_bomb}
+              bombs_around={bombs_around}
+              open={open}
+              flagged={flagged}
+              openCell={openCell}
+              toggleAsBomb={toggleAsBomb}
+              game_over={game_over}
+              result={result}
+            />
+          )))
       }
     </div>
   );
-}
+};
 
 export default connect(
   mapStateToProps,

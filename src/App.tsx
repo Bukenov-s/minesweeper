@@ -13,10 +13,18 @@ const App: FC<any> = ({ startNewGame }) => {
 
   return (
     <div className="app">
-      {difficulty === 'unset' ? <Menu /> : <Fragment><Panel /><Table /></Fragment>}
+      {difficulty === 'unset'
+        ? <Menu />
+        : (
+          <Fragment>
+            <Panel />
+            <Table />
+          </Fragment>
+        )
+      }
     </div>
   );
-}
+};
 
 // export default connect(mapStateToProps, mapDispatchToProps)(hot(module)(App));
 export default hot(App);
