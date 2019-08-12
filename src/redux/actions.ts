@@ -8,10 +8,13 @@ export const startGame = () => ({
   type: TYPES.START_GAME,
 });
 
-export const startNewGame = (rows: number, cols: number) => ({
+export const resetGame = (difficulty: string) => ({
+  type: TYPES.RESET_GAME,
+  difficulty,
+});
+
+export const startNewGame = () => ({
   type: TYPES.START_NEW_GAME,
-  rows,
-  cols,
 });
 
 export const startEasyGame = () => ({

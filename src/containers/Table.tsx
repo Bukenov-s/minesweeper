@@ -74,7 +74,7 @@ const Table: FC<Props> = ({
       }
     </div>
   );
-}
+};
 
 export default connect(
   mapStateToProps,

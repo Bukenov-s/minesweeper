@@ -21,6 +21,13 @@ const INITIAL_STATE: IState = {
     6: {},
     7: {},
     8: {},
+    9: {},
+    10: {},
+    11: {},
+    12: {},
+    13: {},
+    14: {},
+    15: {},
   },
   timer: {
     is_running: false,
@@ -63,6 +70,8 @@ const startEasyGameHandler: Handler<IState, typeof actionCreators.startEasyGame>
   difficulty: 'easy',
   mines: createTable(9, 9, 9),
   cells_closed: 9 * 9,
+  bombs: 9,
+  bombs_counter: 9,
 });
 
 const startNormalGameHandler: Handler<IState, typeof actionCreators.startNormalGame> = state => ({
@@ -70,6 +79,8 @@ const startNormalGameHandler: Handler<IState, typeof actionCreators.startNormalG
   difficulty: 'normal',
   mines: createTable(16, 16, 40),
   cells_closed: 16 * 16,
+  bombs: 40,
+  bombs_counter: 40,
 });
 
 const startHardGameHandler: Handler<IState, typeof actionCreators.startHardGame> = state => ({
@@ -77,6 +88,8 @@ const startHardGameHandler: Handler<IState, typeof actionCreators.startHardGame>
   difficulty: 'hard',
   mines: createTable(16, 30, 99),
   cells_closed: 16 * 30,
+  bombs: 99,
+  bombs_counter: 99,
 });
 
 const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (

@@ -13,6 +13,10 @@ const getMines = state => state.minesweeper.mines;
 const getCellsClosed = state => state.minesweeper.cells_closed;
 const getBombs = state => state.minesweeper.bombs;
 
+function* resetGameSaga({ difficulty }: ReturnType<typeof actionCreators.resetGame>){
+  // do stuff
+};
+
 // recursive saga
 function* openCellRecursive(row: number, col: number) {
   const mines = yield select(getMines);
@@ -78,6 +82,7 @@ function* toggleAsBomb({ row, col }: ReturnType<typeof actionCreators.toggleAsBo
 }
 
 function* flow() {
+  yield takeLatest(TYPES.RESET_GAME, resetGameSaga);
   yield takeLatest(TYPES.OPEN_CELL, openCellSaga);
   yield takeLatest(TYPES.TOGGLE_AS_BOMB, toggleAsBomb);
 }
