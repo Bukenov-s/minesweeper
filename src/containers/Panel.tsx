@@ -6,10 +6,12 @@ import { Timer } from '~/components/Timer';
 const mapStateToProps = ({ minesweeper }) => ({
   bombs_counter: minesweeper.bombs_counter,
   timer: minesweeper.timer,
+  difficulty: minesweeper.difficulty,
 });
 
 const mapDispatchToProps = {
   startGame: actionCreators.startGame,
+  resetGame: actionCreators.resetGame,
 };
 
 type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
@@ -17,11 +19,14 @@ type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
 const Panel: FC<Props> = ({
   bombs_counter,
   timer,
-  startGame
+  difficulty,
+  startGame,
+  resetGame,
 }) => {
   const handleStartClick = useCallback(() => {
-    startGame();
-  }, []);
+    // startGame();
+    resetGame(difficulty);
+  }, [difficulty, resetGame]);
 
   return (
     <div className="panel">

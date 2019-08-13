@@ -13,8 +13,19 @@ const getMines = state => state.minesweeper.mines;
 const getCellsClosed = state => state.minesweeper.cells_closed;
 const getBombs = state => state.minesweeper.bombs;
 
-function* resetGameSaga({ difficulty }: ReturnType<typeof actionCreators.resetGame>){
+function* resetGameSaga({ difficulty }: ReturnType<typeof actionCreators.resetGame>) {
   // do stuff
+  if (difficulty === 'easy') {
+    return yield put(actionCreators.startEasyGame());
+  }
+
+  if (difficulty === 'normal') {
+    return yield put(actionCreators.startNormalGame());
+  }
+
+  if (difficulty === 'hard') {
+    return yield put(actionCreators.startHardGame());
+  }
 };
 
 // recursive saga
