@@ -26,7 +26,7 @@ function* resetGameSaga({ difficulty }: ReturnType<typeof actionCreators.resetGa
   if (difficulty === 'hard') {
     return yield put(actionCreators.startHardGame());
   }
-};
+}
 
 // recursive saga
 function* openCellRecursive(row: number, col: number) {
@@ -82,7 +82,7 @@ function* openCellSaga({ row, col }: ReturnType<typeof actionCreators.openCell>)
   }
 }
 
-function* toggleAsBomb({ row, col }: ReturnType<typeof actionCreators.toggleAsBomb>) {
+function* toggleAsBombSaga({ row, col }: ReturnType<typeof actionCreators.toggleAsBomb>) {
   const mines = yield select(getMines);
   const this_cell = mines[row][col];
   /* eslint-disable */
@@ -95,7 +95,7 @@ function* toggleAsBomb({ row, col }: ReturnType<typeof actionCreators.toggleAsBo
 function* flow() {
   yield takeLatest(TYPES.RESET_GAME, resetGameSaga);
   yield takeLatest(TYPES.OPEN_CELL, openCellSaga);
-  yield takeLatest(TYPES.TOGGLE_AS_BOMB, toggleAsBomb);
+  yield takeLatest(TYPES.TOGGLE_AS_BOMB, toggleAsBombSaga);
 }
 
 export default function* rootSaga() {
