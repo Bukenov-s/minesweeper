@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '~/redux/actions';
 import Cell from '~/components/Cell';
 import classNames from 'classnames';
+import * as styles from '~/styles.scss';
 
 interface IProps {
   mines: any;
@@ -29,12 +30,11 @@ const Table: FC<Props> = ({
 }) => {
   return (
     <div
-      className={classNames('table', {
-        ['easy_table']: difficulty === 'easy',
-        ['normal_table']: difficulty === 'normal',
-        ['hard_table']: difficulty === 'hard',
-      }
-      )}
+      className={classNames(styles.table, {
+        [styles.easy_table]: difficulty === 'easy',
+        [styles.normal_table]: difficulty === 'normal',
+        [styles.hard_table]: difficulty === 'hard',
+      })}
     >
       {
         Object.keys(mines)

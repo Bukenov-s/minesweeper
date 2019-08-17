@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '~/redux/actions';
 import { Timer } from '~/components/Timer';
 import classNames from 'classnames';
+import * as styles from '~/styles.scss';
 
 interface IProps {
   bombs_counter: number;
@@ -28,10 +29,10 @@ const Panel: FC<Props> = ({
   }, [difficulty, resetGame]);
 
   return (
-    <div className={classNames('panel', {
-      ['easy_panel']: difficulty === 'easy',
-      ['normal_panel']: difficulty === 'normal',
-      ['hard_panel']: difficulty === 'hard',
+    <div className={classNames(styles.panel, {
+      [styles.easy_panel]: difficulty === 'easy',
+      [styles.normal_panel]: difficulty === 'normal',
+      [styles.hard_panel]: difficulty === 'hard',
     })}>
       <Timer timer={timer} />
       <span className="spacer" />

@@ -5,6 +5,7 @@ import React, {
   memo
 } from 'react';
 import classNames from 'classnames';
+import * as styles from '~/styles.scss';
 
 interface IProps {
   id: string;
@@ -52,13 +53,10 @@ const Cell: FC<IProps> = memo(({
 
   return (
     <button
-      // className={
-      //   `cell ${flagged || result === 'win' ? 'flagged' : ''} ${open ? 'open' : ''} ${(result === 'loss' && !open) ? 'exploded' : ''}`
-      // }
-      className={classNames('cell', {
-        ['flagged']: flagged || result === 'win',
-        ['open']: open,
-        ['exploded']: result === 'loss' && !open,
+      className={classNames(styles.cell, {
+        [styles.flagged]: flagged || result === 'win',
+        [styles.open]: open,
+        [styles.exploded]: result === 'loss' && !open,
       })}
       onClick={handleClick}
       onContextMenu={handleRightClick}

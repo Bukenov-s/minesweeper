@@ -42,5 +42,4 @@ const App: FC<any> = ({ startNewGame }) => {
   );
 };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(hot(module)(App));
 export default hot(App);

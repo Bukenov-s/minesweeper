@@ -11,7 +11,7 @@ module.exports = {
     path: path.join(__dirname, output_directory),
     filename: 'bundle.js',
   },
-  
+
   module: {
     rules: [
       {
@@ -26,6 +26,27 @@ module.exports = {
         use: {
           loader: 'awesome-typescript-loader',
         },
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              camelCase: true,
+              importLoaders: 2,
+              // localIdentName: '[folder]_[local]__[hash:base64:5]',
+            },
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
       },
       {
         test: /\.css$/,
