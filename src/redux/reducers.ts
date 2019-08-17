@@ -36,12 +36,12 @@ const INITIAL_STATE: IState = {
   result: 'unknown'
 };
 
-const stopGame: Handler<IState, typeof actionCreators.stopGame> = state => ({
+const stopGameHandler: Handler<IState, typeof actionCreators.stopGame> = state => ({
   ...state,
   game_over: true,
 });
 
-const startGame: Handler<IState, typeof actionCreators.startGame> = state => ({
+const startGameHandler: Handler<IState, typeof actionCreators.startGame> = state => ({
   ...state,
   mines: createTable(9, 9, 9),
   game_over: false,
@@ -65,7 +65,7 @@ const startGame: Handler<IState, typeof actionCreators.startGame> = state => ({
   result: 'unknown'
 });
 
-const startEasyGameHandler: Handler<IState, typeof actionCreators.startEasyGame> = state => ({
+const startEasyGameHandlerHandler: Handler<IState, typeof actionCreators.startEasyGame> = state => ({
   ...state,
   difficulty: 'easy',
   game_over: false,
@@ -80,7 +80,7 @@ const startEasyGameHandler: Handler<IState, typeof actionCreators.startEasyGame>
   result: 'unknown'
 });
 
-const startNormalGameHandler: Handler<IState, typeof actionCreators.startNormalGame> = state => ({
+const startNormalGameHandlerHandler: Handler<IState, typeof actionCreators.startNormalGame> = state => ({
   ...state,
   difficulty: 'normal',
   game_over: false,
@@ -95,7 +95,7 @@ const startNormalGameHandler: Handler<IState, typeof actionCreators.startNormalG
   result: 'unknown'
 });
 
-const startHardGameHandler: Handler<IState, typeof actionCreators.startHardGame> = state => ({
+const startHardGameHandlerHandler: Handler<IState, typeof actionCreators.startHardGame> = state => ({
   ...state,
   difficulty: 'hard',
   game_over: false,
@@ -110,7 +110,7 @@ const startHardGameHandler: Handler<IState, typeof actionCreators.startHardGame>
   result: 'unknown'
 });
 
-const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
+const setCellOpenHandler: Handler<IState, typeof actionCreators.setCellOpen> = (
   state,
   { row, col },
 ) => {
@@ -124,7 +124,7 @@ const setCellOpen: Handler<IState, typeof actionCreators.setCellOpen> = (
   };
 };
 
-const startTimer: Handler<IState, typeof actionCreators.startTimer> = state => ({
+const startTimerHandler: Handler<IState, typeof actionCreators.startTimer> = state => ({
   ...state,
   timer: {
     is_reset: false,
@@ -132,7 +132,7 @@ const startTimer: Handler<IState, typeof actionCreators.startTimer> = state => (
   }
 });
 
-const stopTimer: Handler<IState, typeof actionCreators.startTimer> = state => ({
+const stopTimerHandler: Handler<IState, typeof actionCreators.startTimer> = state => ({
   ...state,
   timer: {
     is_reset: false,
@@ -140,7 +140,7 @@ const stopTimer: Handler<IState, typeof actionCreators.startTimer> = state => ({
   }
 });
 
-const addToFlagged: Handler<IState, typeof actionCreators.addToFlagged> = (
+const addToFlaggedHandler: Handler<IState, typeof actionCreators.addToFlagged> = (
   state,
   { row, col }
 ) => {
@@ -156,7 +156,7 @@ const addToFlagged: Handler<IState, typeof actionCreators.addToFlagged> = (
   };
 };
 
-const removeFromFlagged: Handler<IState, typeof actionCreators.removeFromFlagged> = (
+const removeFromFlaggedHandler: Handler<IState, typeof actionCreators.removeFromFlagged> = (
   state,
   { row, col }
 ) => {
@@ -172,29 +172,29 @@ const removeFromFlagged: Handler<IState, typeof actionCreators.removeFromFlagged
   };
 };
 
-const setWinResult: Handler<IState, typeof actionCreators.setWinResult> = state => ({
+const setWinResultHandler: Handler<IState, typeof actionCreators.setWinResult> = state => ({
   ...state,
   result: 'win',
 });
 
-const setLossResult: Handler<IState, typeof actionCreators.setLossResult> = state => ({
+const setLossResultHandler: Handler<IState, typeof actionCreators.setLossResult> = state => ({
   ...state,
   result: 'loss',
 });
 
 const HANDLERS = {
-  [TYPES.STOP_GAME]: stopGame,
-  [TYPES.START_GAME]: startGame,
-  [TYPES.START_EASY_GAME]: startEasyGameHandler,
-  [TYPES.START_NORMAL_GAME]: startNormalGameHandler,
-  [TYPES.START_HARD_GAME]: startHardGameHandler,
-  [TYPES.SET_CELL_OPEN]: setCellOpen,
-  [TYPES.START_TIMER]: startTimer,
-  [TYPES.STOP_TIMER]: stopTimer,
-  [TYPES.ADD_TO_FLAGGED]: addToFlagged,
-  [TYPES.REMOVE_FROM_FLAGGED]: removeFromFlagged,
-  [TYPES.SET_WIN_RESULT]: setWinResult,
-  [TYPES.SET_LOSS_RESULT]: setLossResult,
+  [TYPES.STOP_GAME]: stopGameHandler,
+  [TYPES.START_GAME]: startGameHandler,
+  [TYPES.START_EASY_GAME]: startEasyGameHandlerHandler,
+  [TYPES.START_NORMAL_GAME]: startNormalGameHandlerHandler,
+  [TYPES.START_HARD_GAME]: startHardGameHandlerHandler,
+  [TYPES.SET_CELL_OPEN]: setCellOpenHandler,
+  [TYPES.START_TIMER]: startTimerHandler,
+  [TYPES.STOP_TIMER]: stopTimerHandler,
+  [TYPES.ADD_TO_FLAGGED]: addToFlaggedHandler,
+  [TYPES.REMOVE_FROM_FLAGGED]: removeFromFlaggedHandler,
+  [TYPES.SET_WIN_RESULT]: setWinResultHandler,
+  [TYPES.SET_LOSS_RESULT]: setLossResultHandler,
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);
