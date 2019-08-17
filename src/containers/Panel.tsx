@@ -4,17 +4,18 @@ import * as actionCreators from '~/redux/actions';
 import { Timer } from '~/components/Timer';
 import classNames from 'classnames';
 
-const mapStateToProps = ({ minesweeper }) => ({
-  bombs_counter: minesweeper.bombs_counter,
-  timer: minesweeper.timer,
-});
+interface IProps {
+  bombs_counter: number;
+  timer: any;
+  difficulty: string;
+}
 
 const mapDispatchToProps = {
   startGame: actionCreators.startGame,
   resetGame: actionCreators.resetGame,
 };
 
-type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {}
+type Props = IProps & typeof mapDispatchToProps & {}
 
 const Panel: FC<Props> = ({
   bombs_counter,
@@ -48,6 +49,6 @@ const Panel: FC<Props> = ({
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Panel);

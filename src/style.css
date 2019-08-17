@@ -27,30 +27,30 @@
 }
 
 .easy_table { 
-  width: 243px !important;
-  height: 243px !important;
+  width: 243px;
+  height: 243px;
 };
 
 .normal_table {
-  width: 432px !important;
-  height: 432px !important;
+  width: 432px;
+  height: 432px;
 };
 
 .hard_table {
-  width: 810px !important;
-  height: 432px !important;
+  width: 810px;
+  height: 432px;
 };
 
 .easy_panel {
-  width: 243px !important;
+  width: 243px;
 }
 
 .normal_panel {
-  width: 432px !important;
+  width: 432px;
 }
 
 .hard_panel {
-  width: 810px !important;
+  width: 810px;
 }
 
 .restart {

@@ -4,19 +4,20 @@ import * as actionCreators from '~/redux/actions';
 import Cell from '~/components/Cell';
 import classNames from 'classnames';
 
-const mapStateToProps = ({ minesweeper }) => ({
-  mines: minesweeper.mines,
-  game_over: minesweeper.game_over,
-  result: minesweeper.result,
-  bombs: minesweeper.bombs,
-});
+interface IProps {
+  mines: any;
+  game_over: boolean;
+  result: 'unknown' | 'win' | 'loss';
+  bombs: number;
+  difficulty: string;
+}
 
 const mapDispatchToProps = {
   openCell: actionCreators.openCell,
   toggleAsBomb: actionCreators.toggleAsBomb,
 };
 
-type Props = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps> & {};
+type Props = typeof mapDispatchToProps & IProps & {};
 
 const Table: FC<Props> = ({
   mines,
@@ -67,6 +68,6 @@ const Table: FC<Props> = ({
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Table);
