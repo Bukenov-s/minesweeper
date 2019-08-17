@@ -5,7 +5,6 @@ import { getDifficulty, getGameOver, getResult, getBombsCounter, getTimer, getMi
 import Table from '~/containers/Table';
 import Panel from '~/containers/Panel';
 import Menu from '~/containers/Menu';
-import * as actionCreators from './redux/actions';
 import './style.css';
 
 const App: FC<any> = ({ startNewGame }) => {

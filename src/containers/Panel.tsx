@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as actionCreators from '~/redux/actions';
 import { Timer } from '~/components/Timer';
 import classNames from 'classnames';
@@ -11,22 +11,16 @@ interface IProps {
   difficulty: string;
 }
 
-const mapDispatchToProps = {
-  startGame: actionCreators.startGame,
-  resetGame: actionCreators.resetGame,
-};
-
-type Props = IProps & typeof mapDispatchToProps & {}
-
-const Panel: FC<Props> = ({
+const Panel: FC<IProps> = ({
   bombs_counter,
   timer,
   difficulty,
-  resetGame,
 }) => {
+  const dispatch = useDispatch();
+
   const handleStartClick = useCallback(() => {
-    resetGame(difficulty);
-  }, [difficulty, resetGame]);
+    dispatch(actionCreators.resetGame(difficulty));
+  }, [difficulty, actionCreators.resetGame]);
 
   return (
     <div className={classNames(styles.panel, {
@@ -49,7 +43,4 @@ const Panel: FC<Props> = ({
   );
 };
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(Panel);
+export default Panel;

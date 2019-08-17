@@ -1,6 +1,4 @@
-import React, { FC, useCallback } from 'react';
-import { connect } from 'react-redux';
-import * as actionCreators from '~/redux/actions';
+import React, { FC } from 'react';
 import Cell from '~/components/Cell';
 import classNames from 'classnames';
 import * as styles from '~/styles.scss';
@@ -13,21 +11,13 @@ interface IProps {
   difficulty: string;
 }
 
-const mapDispatchToProps = {
-  openCell: actionCreators.openCell,
-  toggleAsBomb: actionCreators.toggleAsBomb,
-};
-
-type Props = typeof mapDispatchToProps & IProps & {};
-
-const Table: FC<Props> = ({
+const Table: FC<IProps> = ({
   mines,
   game_over,
   result,
   difficulty,
-  openCell,
-  toggleAsBomb,
 }) => {
+
   return (
     <div
       className={classNames(styles.table, {
@@ -56,8 +46,6 @@ const Table: FC<Props> = ({
                 bombs_around={bombs_around}
                 open={open}
                 flagged={flagged}
-                openCell={openCell}
-                toggleAsBomb={toggleAsBomb}
                 game_over={game_over}
                 result={result}
               />
@@ -67,7 +55,4 @@ const Table: FC<Props> = ({
   );
 };
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(Table);
+export default Table;

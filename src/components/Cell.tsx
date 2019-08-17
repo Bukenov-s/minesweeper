@@ -4,7 +4,9 @@ import React, {
   useCallback,
   memo
 } from 'react';
+import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
+import { openCell, toggleAsBomb } from '~/redux/actions';
 import * as styles from '~/styles.scss';
 
 interface IProps {
@@ -17,8 +19,6 @@ interface IProps {
   bombs_around: number;
   game_over: boolean;
   result: 'unknown' | 'win' | 'loss';
-  openCell: (row: number, col: number) => void;
-  toggleAsBomb: (row: number, col: number, has_bomb: boolean) => void;
 }
 
 const Cell: FC<IProps> = memo(({
@@ -31,15 +31,16 @@ const Cell: FC<IProps> = memo(({
   bombs_around,
   game_over,
   result,
-  openCell,
-  toggleAsBomb,
 }) => {
+  const dispatch = useDispatch();
+
   const handleClick = useCallback(() => {
     if (open || flagged) {
       return null;
     }
 
-    openCell(row, col);
+    // openCell(row, col);
+    dispatch(openCell(row, col));
   }, [open, flagged, row, col, openCell]);
 
   const handleRightClick: MouseEventHandler<HTMLButtonElement> = useCallback((evt) => {
@@ -48,7 +49,7 @@ const Cell: FC<IProps> = memo(({
       return;
     }
 
-    toggleAsBomb(row, col, has_bomb);
+    dispatch(toggleAsBomb(row, col, has_bomb));
   }, [open, row, col, has_bomb, toggleAsBomb]);
 
   return (
