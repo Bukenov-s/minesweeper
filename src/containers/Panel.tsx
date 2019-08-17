@@ -2,11 +2,11 @@ import React, { FC, useCallback } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '~/redux/actions';
 import { Timer } from '~/components/Timer';
+import classNames from 'classnames';
 
 const mapStateToProps = ({ minesweeper }) => ({
   bombs_counter: minesweeper.bombs_counter,
   timer: minesweeper.timer,
-  difficulty: minesweeper.difficulty,
 });
 
 const mapDispatchToProps = {
@@ -20,16 +20,18 @@ const Panel: FC<Props> = ({
   bombs_counter,
   timer,
   difficulty,
-  startGame,
   resetGame,
 }) => {
   const handleStartClick = useCallback(() => {
-    // startGame();
     resetGame(difficulty);
   }, [difficulty, resetGame]);
 
   return (
-    <div className="panel">
+    <div className={classNames('panel', {
+      ['easy_panel']: difficulty === 'easy',
+      ['normal_panel']: difficulty === 'normal',
+      ['hard_panel']: difficulty === 'hard',
+    })}>
       <Timer timer={timer} />
       <span className="spacer" />
       <button

@@ -2,13 +2,13 @@ import React, { FC, useCallback } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '~/redux/actions';
 import Cell from '~/components/Cell';
+import classNames from 'classnames';
 
 const mapStateToProps = ({ minesweeper }) => ({
   mines: minesweeper.mines,
   game_over: minesweeper.game_over,
   result: minesweeper.result,
   bombs: minesweeper.bombs,
-  difficulty: minesweeper.difficulty,
 });
 
 const mapDispatchToProps = {
@@ -26,24 +26,14 @@ const Table: FC<Props> = ({
   openCell,
   toggleAsBomb,
 }) => {
-  const getWidthAndHeight = useCallback((arg) => {
-    if (arg === 'easy') {
-      return { width: '243px', height: '243px' };
-    }
-
-    if (arg === 'normal') {
-      return { width: '432px', height: '432px' };
-    }
-
-    if (arg === 'hard') {
-      return { width: '810px', height: '432px' };
-    }
-  }, [difficulty]);
-
   return (
     <div
-      className="table"
-      style={getWidthAndHeight(difficulty)}
+      className={classNames('table', {
+        ['easy_table']: difficulty === 'easy',
+        ['normal_table']: difficulty === 'normal',
+        ['hard_table']: difficulty === 'hard',
+      }
+      )}
     >
       {
         Object.keys(mines)
@@ -56,21 +46,21 @@ const Table: FC<Props> = ({
             open,
             flagged,
           }: any) => (
-            <Cell
-              key={id}
-              id={id}
-              row={row}
-              col={col}
-              has_bomb={has_bomb}
-              bombs_around={bombs_around}
-              open={open}
-              flagged={flagged}
-              openCell={openCell}
-              toggleAsBomb={toggleAsBomb}
-              game_over={game_over}
-              result={result}
-            />
-          )))
+              <Cell
+                key={id}
+                id={id}
+                row={row}
+                col={col}
+                has_bomb={has_bomb}
+                bombs_around={bombs_around}
+                open={open}
+                flagged={flagged}
+                openCell={openCell}
+                toggleAsBomb={toggleAsBomb}
+                game_over={game_over}
+                result={result}
+              />
+            )))
       }
     </div>
   );

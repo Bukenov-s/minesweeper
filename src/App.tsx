@@ -17,8 +17,12 @@ const App: FC<any> = ({ startNewGame }) => {
         ? <Menu />
         : (
           <Fragment>
-            <Panel />
-            <Table />
+            <Panel
+              difficulty={difficulty}
+            />
+            <Table
+              difficulty={difficulty}
+            />
           </Fragment>
         )
       }

@@ -4,6 +4,7 @@ import React, {
   useCallback,
   memo
 } from 'react';
+import classNames from 'classnames';
 
 interface IProps {
   id: string;
@@ -51,9 +52,14 @@ const Cell: FC<IProps> = memo(({
 
   return (
     <button
-      className={
-        `cell ${flagged || result === 'win' ? 'flagged' : ''} ${open ? 'open' : ''} ${(result === 'loss' && !open) ? 'exploded' : ''}`
-      }
+      // className={
+      //   `cell ${flagged || result === 'win' ? 'flagged' : ''} ${open ? 'open' : ''} ${(result === 'loss' && !open) ? 'exploded' : ''}`
+      // }
+      className={classNames('cell', {
+        ['flagged']: flagged || result === 'win',
+        ['open']: open,
+        ['exploded']: result === 'loss' && !open,
+      })}
       onClick={handleClick}
       onContextMenu={handleRightClick}
       disabled={game_over}

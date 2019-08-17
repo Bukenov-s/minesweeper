@@ -12,13 +12,6 @@
   justify-content: center;
 }
 
-.table {
-  display: flex;
-  flex-wrap: wrap;
-  /* width: 243px;
-  height: 243px; */
-}
-
 .panel {
   display: flex;
   justify-content: center;
@@ -26,6 +19,38 @@
   padding: 5px 10px;
   width: 243px;
   border: 1px solid black;
+}
+
+.table {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.easy_table { 
+  width: 243px !important;
+  height: 243px !important;
+};
+
+.normal_table {
+  width: 432px !important;
+  height: 432px !important;
+};
+
+.hard_table {
+  width: 810px !important;
+  height: 432px !important;
+};
+
+.easy_panel {
+  width: 243px !important;
+}
+
+.normal_panel {
+  width: 432px !important;
+}
+
+.hard_panel {
+  width: 810px !important;
 }
 
 .restart {
