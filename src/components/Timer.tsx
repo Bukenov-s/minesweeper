@@ -34,7 +34,7 @@ const Timer: FC<IProps> = ({ timer }) => {
 
   return (
     <span>{zeros + time}</span>
-  )
-}
+  );
+};
 
 export { Timer };
