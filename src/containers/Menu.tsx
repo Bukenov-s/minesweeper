@@ -1,11 +1,25 @@
-import React, { FC } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getDifficulty } from '~/redux/selectors';
-import * as actionCreators from '~/redux/actions';
+import React, { FC, useCallback, MouseEventHandler } from 'react';
+import { useDispatch } from 'react-redux';
+import { startEasyGame, startNormalGame, startHardGame } from '~/redux/actions';
 
-const Menu: FC<any> = () => {
-  const difficulty = useSelector(getDifficulty);
+const Menu: FC<{}> = () => {
   const dispatch = useDispatch();
+
+  const handleStartClick: MouseEventHandler<HTMLButtonElement> = useCallback((evt) => {
+    const { value } = evt.currentTarget;
+
+    if (value === 'easy') {
+      dispatch(startEasyGame());
+    }
+
+    if (value === 'normal') {
+      dispatch(startNormalGame());
+    }
+
+    if (value === 'hard') {
+      dispatch(startHardGame());
+    }
+  }, [startEasyGame, startNormalGame, startHardGame]);
 
   return (
     <div
@@ -16,20 +30,23 @@ const Menu: FC<any> = () => {
       }}
     >
       <button
-        onClick={() => dispatch(actionCreators.startEasyGame())}
+        onClick={handleStartClick}
         type="button"
+        value="easy"
       >
         easy
       </button>
       <button
-        onClick={() => dispatch(actionCreators.startNormalGame())}
+        onClick={handleStartClick}
         type="button"
+        value="normal"
       >
         normal
       </button>
       <button
-        onClick={() => dispatch(actionCreators.startHardGame())}
+        onClick={handleStartClick}
         type="button"
+        value="hard"
       >
         hard
       </button>

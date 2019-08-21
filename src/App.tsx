@@ -7,7 +7,7 @@ import Panel from '~/containers/Panel';
 import Menu from '~/containers/Menu';
 import './style.css';
 
-const App: FC<any> = ({ startNewGame }) => {
+const App: FC<{}> = () => {
   const difficulty = useSelector(selectors.getDifficulty);
   const result = useSelector(selectors.getResult);
   const game_over = useSelector(selectors.getGameOver);

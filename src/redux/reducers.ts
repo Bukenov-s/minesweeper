@@ -1,6 +1,6 @@
 import * as TYPES from './types';
 import { IState, Handler } from '~/types';
-import * as actionCreators from '~/redux/actions';
+import * as actions from '~/redux/actions';
 import { createReducer } from '~/utils/createReducer';
 import { createTable } from '~/algorithms';
 
@@ -36,12 +36,12 @@ const INITIAL_STATE: IState = {
   result: 'unknown'
 };
 
-const stopGameHandler: Handler<IState, typeof actionCreators.stopGame> = state => ({
+const stopGameHandler: Handler<IState, typeof actions.stopGame> = state => ({
   ...state,
   game_over: true,
 });
 
-const startGameHandler: Handler<IState, typeof actionCreators.startGame> = state => ({
+const startGameHandler: Handler<IState, typeof actions.startGame> = state => ({
   ...state,
   mines: createTable(9, 9, 9),
   game_over: false,
@@ -65,7 +65,7 @@ const startGameHandler: Handler<IState, typeof actionCreators.startGame> = state
   result: 'unknown'
 });
 
-const startEasyGameHandlerHandler: Handler<IState, typeof actionCreators.startEasyGame> = state => ({
+const startEasyGameHandlerHandler: Handler<IState, typeof actions.startEasyGame> = state => ({
   ...state,
   difficulty: 'easy',
   game_over: false,
@@ -80,7 +80,7 @@ const startEasyGameHandlerHandler: Handler<IState, typeof actionCreators.startEa
   result: 'unknown'
 });
 
-const startNormalGameHandlerHandler: Handler<IState, typeof actionCreators.startNormalGame> = state => ({
+const startNormalGameHandlerHandler: Handler<IState, typeof actions.startNormalGame> = state => ({
   ...state,
   difficulty: 'normal',
   game_over: false,
@@ -95,7 +95,7 @@ const startNormalGameHandlerHandler: Handler<IState, typeof actionCreators.start
   result: 'unknown'
 });
 
-const startHardGameHandlerHandler: Handler<IState, typeof actionCreators.startHardGame> = state => ({
+const startHardGameHandlerHandler: Handler<IState, typeof actions.startHardGame> = state => ({
   ...state,
   difficulty: 'hard',
   game_over: false,
@@ -110,7 +110,7 @@ const startHardGameHandlerHandler: Handler<IState, typeof actionCreators.startHa
   result: 'unknown'
 });
 
-const setCellOpenHandler: Handler<IState, typeof actionCreators.setCellOpen> = (
+const setCellOpenHandler: Handler<IState, typeof actions.setCellOpen> = (
   state,
   { row, col },
 ) => {
@@ -124,7 +124,7 @@ const setCellOpenHandler: Handler<IState, typeof actionCreators.setCellOpen> = (
   };
 };
 
-const startTimerHandler: Handler<IState, typeof actionCreators.startTimer> = state => ({
+const startTimerHandler: Handler<IState, typeof actions.startTimer> = state => ({
   ...state,
   timer: {
     is_reset: false,
@@ -132,7 +132,7 @@ const startTimerHandler: Handler<IState, typeof actionCreators.startTimer> = sta
   }
 });
 
-const stopTimerHandler: Handler<IState, typeof actionCreators.startTimer> = state => ({
+const stopTimerHandler: Handler<IState, typeof actions.startTimer> = state => ({
   ...state,
   timer: {
     is_reset: false,
@@ -140,7 +140,7 @@ const stopTimerHandler: Handler<IState, typeof actionCreators.startTimer> = stat
   }
 });
 
-const addToFlaggedHandler: Handler<IState, typeof actionCreators.addToFlagged> = (
+const addToFlaggedHandler: Handler<IState, typeof actions.addToFlagged> = (
   state,
   { row, col }
 ) => {
@@ -156,7 +156,7 @@ const addToFlaggedHandler: Handler<IState, typeof actionCreators.addToFlagged> =
   };
 };
 
-const removeFromFlaggedHandler: Handler<IState, typeof actionCreators.removeFromFlagged> = (
+const removeFromFlaggedHandler: Handler<IState, typeof actions.removeFromFlagged> = (
   state,
   { row, col }
 ) => {
@@ -172,12 +172,12 @@ const removeFromFlaggedHandler: Handler<IState, typeof actionCreators.removeFrom
   };
 };
 
-const setWinResultHandler: Handler<IState, typeof actionCreators.setWinResult> = state => ({
+const setWinResultHandler: Handler<IState, typeof actions.setWinResult> = state => ({
   ...state,
   result: 'win',
 });
 
-const setLossResultHandler: Handler<IState, typeof actionCreators.setLossResult> = state => ({
+const setLossResultHandler: Handler<IState, typeof actions.setLossResult> = state => ({
   ...state,
   result: 'loss',
 });
