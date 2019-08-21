@@ -39,7 +39,6 @@ const Cell: FC<IProps> = memo(({
       return null;
     }
 
-    // openCell(row, col);
     dispatch(openCell(row, col));
   }, [open, flagged, row, col, openCell]);
 

@@ -18,7 +18,7 @@ const Panel: FC<IProps> = ({
 }) => {
   const dispatch = useDispatch();
 
-  const handleStartClick = useCallback(() => {
+  const handleResetClick = useCallback(() => {
     dispatch(actionCreators.resetGame(difficulty));
   }, [difficulty, actionCreators.resetGame]);
 
@@ -27,11 +27,12 @@ const Panel: FC<IProps> = ({
       [styles.easy_panel]: difficulty === 'easy',
       [styles.normal_panel]: difficulty === 'normal',
       [styles.hard_panel]: difficulty === 'hard',
-    })}>
+    })}
+    >
       <Timer timer={timer} />
       <span className="spacer" />
       <button
-        onClick={handleStartClick}
+        onClick={handleResetClick}
         className="restart"
         type="button"
       >

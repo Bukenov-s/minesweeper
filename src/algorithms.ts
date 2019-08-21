@@ -39,12 +39,14 @@ const pickRandomUniqueIndexes = (rows: number, cols: number, bombs: number) => {
   // generates an array of all possible indexes of cells
   // for example '00' - means first row and first cell , '25' - means third row sixth cell
 
+  /* eslint-disable */
   const indexes = [];
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       indexes.push(i + ' ' + j);
     }
   }
+  /* eslint-enable */
 
   const random_indexes = [];
   while (random_indexes.length < bombs) {
