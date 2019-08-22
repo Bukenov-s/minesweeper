@@ -5,3 +5,4 @@ export const getBombsCounter = state => state.minesweeper.bombs_counter;
 export const getBombs = state => state.minesweeper.bombs;
 export const getTimer = state => state.minesweeper.timer;
 export const getMines = state => state.minesweeper.mines;
+export const getCellsClosed = state => state.minesweeper.cells_closed;

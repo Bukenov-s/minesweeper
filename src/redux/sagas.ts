@@ -7,11 +7,7 @@ import {
 } from 'redux-saga/effects';
 import * as TYPES from './types';
 import * as actions from './actions';
-
-// Selectors
-const getMines = state => state.minesweeper.mines;
-const getCellsClosed = state => state.minesweeper.cells_closed;
-const getBombs = state => state.minesweeper.bombs;
+import { getMines, getCellsClosed, getBombs } from '~/redux/selectors';
 
 function* resetGameSaga({ difficulty }: ReturnType<typeof actions.resetGame>) {
   // do stuff

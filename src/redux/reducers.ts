@@ -7,10 +7,10 @@ import { createTable } from '~/algorithms';
 const INITIAL_STATE: IState = {
   game_over: false,
   difficulty: 'unset',
-  mines: createTable(9, 9, 9),
-  bombs: 9,
-  bombs_counter: 9,
-  cells_closed: 81,
+  mines: {},
+  bombs: 0,
+  bombs_counter: 0,
+  cells_closed: 0,
   flagged_cells: {
     0: {},
     1: {},
@@ -39,30 +39,6 @@ const INITIAL_STATE: IState = {
 const stopGameHandler: Handler<IState, typeof actions.stopGame> = state => ({
   ...state,
   game_over: true,
-});
-
-const startGameHandler: Handler<IState, typeof actions.startGame> = state => ({
-  ...state,
-  mines: createTable(9, 9, 9),
-  game_over: false,
-  bombs_counter: 9,
-  cells_closed: 81,
-  flagged_cells: {
-    0: {},
-    1: {},
-    2: {},
-    3: {},
-    4: {},
-    5: {},
-    6: {},
-    7: {},
-    8: {},
-  },
-  timer: {
-    is_reset: true,
-    is_running: false
-  },
-  result: 'unknown'
 });
 
 const startEasyGameHandlerHandler: Handler<IState, typeof actions.startEasyGame> = state => ({
@@ -184,7 +160,6 @@ const setLossResultHandler: Handler<IState, typeof actions.setLossResult> = stat
 
 const HANDLERS = {
   [TYPES.STOP_GAME]: stopGameHandler,
-  [TYPES.START_GAME]: startGameHandler,
   [TYPES.START_EASY_GAME]: startEasyGameHandlerHandler,
   [TYPES.START_NORMAL_GAME]: startNormalGameHandlerHandler,
   [TYPES.START_HARD_GAME]: startHardGameHandlerHandler,

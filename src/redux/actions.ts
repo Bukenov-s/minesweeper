@@ -4,10 +4,6 @@ export const stopGame = () => ({
   type: TYPES.STOP_GAME,
 });
 
-export const startGame = () => ({
-  type: TYPES.START_GAME,
-});
-
 export const resetGame = (difficulty: string) => ({
   type: TYPES.RESET_GAME,
   difficulty,
