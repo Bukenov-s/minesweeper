@@ -21,6 +21,24 @@
   border: 1px solid black;
 }
 
+.menu_container {
+  width: 243px;
+  height: 243px;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.difficulty_level {
+  width: 80px;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: #fff;
+}
+
 .table {
   display: flex;
   flex-wrap: wrap;
